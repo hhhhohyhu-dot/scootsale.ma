@@ -86,10 +86,80 @@
         </div>
     </section>
 
+    <!-- Stats Counter Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item reveal-up">
+                    <div class="stat-icon"><i class="ri-user-heart-line"></i></div>
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-plus">+</div>
+                    <p class="stat-label">Clients Satisfaits</p>
+                </div>
+                <div class="stat-item reveal-up delay-1">
+                    <div class="stat-icon"><i class="ri-e-bike-2-line"></i></div>
+                    <div class="stat-number" data-target="1200">0</div>
+                    <div class="stat-plus">+</div>
+                    <p class="stat-label">Scooters Vendus</p>
+                </div>
+                <div class="stat-item reveal-up delay-2">
+                    <div class="stat-icon"><i class="ri-truck-line"></i></div>
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-plus">h</div>
+                    <p class="stat-label">Livraison Express</p>
+                </div>
+                <div class="stat-item reveal-up delay-3">
+                    <div class="stat-icon"><i class="ri-map-pin-line"></i></div>
+                    <div class="stat-number" data-target="40">0</div>
+                    <div class="stat-plus">+</div>
+                    <p class="stat-label">Villes Desservies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Countdown Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <div class="promo-content glass reveal-up">
+                <div class="promo-left">
+                    <span class="promo-fire">🔥</span>
+                    <div>
+                        <h3>OFFRE LIMITÉE !</h3>
+                        <p>Jusqu'à <strong>-15%</strong> sur tous les modèles Tank M41</p>
+                    </div>
+                </div>
+                <div class="promo-countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="cd-days">00</span>
+                        <span class="countdown-label">Jours</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="cd-hours">00</span>
+                        <span class="countdown-label">Heures</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="cd-minutes">00</span>
+                        <span class="countdown-label">Min</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="cd-seconds">00</span>
+                        <span class="countdown-label">Sec</span>
+                    </div>
+                </div>
+                <a href="#products" class="btn btn-primary">Profitez-en →</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Products Section -->
     <section id="products" class="products">
         <div class="container">
             <h2 class="section-title" data-i18n="sec_scooters">Our Premium Scooters</h2>
+            <p class="section-subtitle">Chaque scooter est testé, vérifié et livré avec une garantie officielle de 1 an.</p>
             <div class="product-grid">
 
                 <!-- Product 1: Tank M41 1000W -->
@@ -307,6 +377,36 @@
         </div>
     </section>
 
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Comment Ça Marche ?</h2>
+            <p class="section-subtitle">Commander votre trottinette est simple et rapide</p>
+            <div class="steps-grid">
+                <div class="step-card reveal-up">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="ri-search-line"></i></div>
+                    <h3>Choisissez</h3>
+                    <p>Parcourez notre catalogue et trouvez le modèle qui correspond à vos besoins.</p>
+                </div>
+                <div class="step-connector reveal-up delay-1"><i class="ri-arrow-right-line"></i></div>
+                <div class="step-card reveal-up delay-1">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="ri-whatsapp-line"></i></div>
+                    <h3>Commandez</h3>
+                    <p>Passez votre commande via WhatsApp ou directement sur le site. Paiement à la livraison accepté.</p>
+                </div>
+                <div class="step-connector reveal-up delay-2"><i class="ri-arrow-right-line"></i></div>
+                <div class="step-card reveal-up delay-2">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="ri-gift-line"></i></div>
+                    <h3>Recevez</h3>
+                    <p>Livraison rapide chez vous en 24h-72h. Testez votre scooter avant de payer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Features Section -->
     <section id="features" class="features">
         <div class="container">
@@ -383,6 +483,21 @@
     <section id="reviews" class="testimonials">
         <div class="container">
             <h2 class="section-title" data-i18n="sec_reviews">What Our Customers Say</h2>
+            <!-- Rating Summary -->
+            <div class="rating-summary reveal-up">
+                <div class="rating-big">
+                    <span class="rating-number">4.9</span>
+                    <span class="rating-star">★</span>
+                </div>
+                <p>Basé sur <strong>500+</strong> avis clients vérifiés</p>
+                <div class="rating-bars">
+                    <div class="rating-bar-row"><span>5★</span><div class="rating-bar"><div class="rating-fill" style="width: 88%"></div></div><span>88%</span></div>
+                    <div class="rating-bar-row"><span>4★</span><div class="rating-bar"><div class="rating-fill" style="width: 9%"></div></div><span>9%</span></div>
+                    <div class="rating-bar-row"><span>3★</span><div class="rating-bar"><div class="rating-fill" style="width: 2%"></div></div><span>2%</span></div>
+                    <div class="rating-bar-row"><span>2★</span><div class="rating-bar"><div class="rating-fill" style="width: 1%"></div></div><span>1%</span></div>
+                    <div class="rating-bar-row"><span>1★</span><div class="rating-bar"><div class="rating-fill" style="width: 0%"></div></div><span>0%</span></div>
+                </div>
+            </div>
             <div class="testimonial-grid">
                 <div class="testimonial-card glass reveal-up">
                     <div class="stars">
@@ -414,7 +529,7 @@
                     <div class="stars">
                         <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
                     </div>
-                    <p class="review-text">"The Ultimate 2000W is a beast! It climbs hills easily and the battery lasts for days. Best purchase I've made this year. Highly recommend ScootSale."</p>
+                    <p class="review-text">"J'ai commandé la Tank Double Motor et franchement je suis bluffé. La vitesse est dingue et les freins hydrauliques sont très rassurants. Merci ScootSale!"</p>
                     <div class="customer">
                         <div class="avatar">A</div>
                         <div>
@@ -422,6 +537,117 @@
                             <span>Marrakech</span>
                         </div>
                     </div>
+                </div>
+                <div class="testimonial-card glass reveal-up delay-3">
+                    <div class="stars">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                    </div>
+                    <p class="review-text">"Meilleur service client au Maroc. J'avais un souci technique et ils m'ont envoyé un technicien le lendemain. Les pièces de rechange sont toujours disponibles."</p>
+                    <div class="customer">
+                        <div class="avatar">K</div>
+                        <div>
+                            <h4>Khalid R.</h4>
+                            <span>Fès</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass reveal-up delay-4">
+                    <div class="stars">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-half-fill"></i>
+                    </div>
+                    <p class="review-text">"Ma deuxième commande chez ScootSale. La première pour moi, celle-ci pour mon frère. Qualité constante, prix imbattable, et le paiement à la livraison c'est top."</p>
+                    <div class="customer">
+                        <div class="avatar">F</div>
+                        <div>
+                            <h4>Fatima Z.</h4>
+                            <span>Tanger</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass reveal-up delay-5">
+                    <div class="stars">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                    </div>
+                    <p class="review-text">"J'utilise ma trottinette tous les jours pour aller au travail. 6 mois d'utilisation et aucun problème. La batterie tient encore comme au premier jour. Je recommande à 100%!"</p>
+                    <div class="customer">
+                        <div class="avatar">M</div>
+                        <div>
+                            <h4>Mohamed L.</h4>
+                            <span>Agadir</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantees Section -->
+    <section class="guarantees section-dark">
+        <div class="container">
+            <h2 class="section-title text-white">Nos Engagements</h2>
+            <p class="section-subtitle" style="color: #ccc;">Achetez en toute confiance. Chaque achat est protégé.</p>
+            <div class="guarantee-grid">
+                <div class="guarantee-card glass reveal-up">
+                    <div class="guarantee-icon"><i class="ri-shield-check-line"></i></div>
+                    <h3>Garantie 1 An</h3>
+                    <p>Moteur, batterie et composants électroniques couverts pendant 12 mois contre tout défaut de fabrication.</p>
+                </div>
+                <div class="guarantee-card glass reveal-up delay-1">
+                    <div class="guarantee-icon"><i class="ri-tools-line"></i></div>
+                    <h3>Pièces de Rechange</h3>
+                    <p>Stock permanent de pièces détachées pour tous les modèles. Réparation rapide garantie.</p>
+                </div>
+                <div class="guarantee-card glass reveal-up delay-2">
+                    <div class="guarantee-icon"><i class="ri-exchange-line"></i></div>
+                    <h3>Retour Sous 7 Jours</h3>
+                    <p>Pas satisfait ? Retournez votre scooter dans les 7 jours suivant la réception pour un remboursement.</p>
+                </div>
+                <div class="guarantee-card glass reveal-up delay-3">
+                    <div class="guarantee-icon"><i class="ri-hand-coin-line"></i></div>
+                    <h3>Paiement à la Livraison</h3>
+                    <p>Payez uniquement à la réception de votre scooter. Testez-le avant de payer, sans engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Cities Section -->
+    <section class="delivery-cities">
+        <div class="container">
+            <h2 class="section-title">Livraison Partout au Maroc 🇲🇦</h2>
+            <p class="section-subtitle">Nous livrons dans plus de 40 villes à travers tout le Royaume</p>
+            <div class="cities-grid reveal-up">
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Casablanca</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Rabat</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Marrakech</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Fès</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Tanger</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Agadir</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Meknès</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Oujda</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Kénitra</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Tétouan</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Settat</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> El Jadida</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Nador</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Béni Mellal</div>
+                <div class="city-tag"><i class="ri-map-pin-2-fill"></i> Safi</div>
+                <div class="city-tag highlight"><i class="ri-add-circle-line"></i> Et toutes les autres villes...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social CTA Section -->
+    <section class="social-cta section-dark">
+        <div class="container">
+            <div class="social-cta-content reveal-up">
+                <h2>Rejoignez la Communauté ScootSale 🚀</h2>
+                <p>Suivez-nous pour des offres exclusives, des vidéos et des témoignages clients</p>
+                <div class="social-cta-links">
+                    <a href="#" class="social-btn instagram"><i class="ri-instagram-fill"></i> Instagram</a>
+                    <a href="#" class="social-btn tiktok"><i class="ri-tiktok-fill"></i> TikTok</a>
+                    <a href="#" class="social-btn facebook"><i class="ri-facebook-circle-fill"></i> Facebook</a>
+                    <a href="#" class="social-btn youtube"><i class="ri-youtube-fill"></i> YouTube</a>
                 </div>
             </div>
         </div>
@@ -632,6 +858,13 @@
         </div>
     </div>
 
-    <script src="translations.js"></script>\n    <script src="script.js"></script>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/212607436420" target="_blank" class="whatsapp-float" id="whatsapp-float">
+        <i class="ri-whatsapp-line"></i>
+        <span class="whatsapp-tooltip">Besoin d'aide ? Contactez-nous!</span>
+    </a>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

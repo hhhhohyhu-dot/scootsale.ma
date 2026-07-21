@@ -489,4 +489,92 @@ document.addEventListener('DOMContentLoaded', () => {
         
         window.open(`https://wa.me/212607436420?text=${encodeURIComponent(message)}`, '_blank');
     });
+
+    // --- Animated Counters ---
+    const counters = document.querySelectorAll('.stat-number');
+    let countersAnimated = false;
+
+    function animateCounters() {
+        if (countersAnimated) return;
+        countersAnimated = true;
+
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+
+            const update = () => {
+                current += increment;
+                if (current < target) {
+                    counter.textContent = Math.floor(current);
+                    requestAnimationFrame(update);
+                } else {
+                    counter.textContent = target;
+                }
+            };
+            update();
+        });
+    }
+
+    // Trigger counters when stats section is visible
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        statsObserver.observe(statsSection);
+    }
+
+    // --- Countdown Timer ---
+    function startCountdown() {
+        // Set countdown to 3 days from now (resets each visit to always show urgency)
+        let endDate = localStorage.getItem('scootsale-countdown-end');
+        const now = new Date().getTime();
+        
+        if (!endDate || parseInt(endDate) < now) {
+            // Set new countdown: 3 days from now
+            endDate = now + (3 * 24 * 60 * 60 * 1000);
+            localStorage.setItem('scootsale-countdown-end', endDate);
+        } else {
+            endDate = parseInt(endDate);
+        }
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const diff = endDate - now;
+
+            if (diff <= 0) {
+                // Reset countdown
+                const newEnd = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
+                localStorage.setItem('scootsale-countdown-end', newEnd);
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            const cdDays = document.getElementById('cd-days');
+            const cdHours = document.getElementById('cd-hours');
+            const cdMinutes = document.getElementById('cd-minutes');
+            const cdSeconds = document.getElementById('cd-seconds');
+
+            if (cdDays) cdDays.textContent = String(days).padStart(2, '0');
+            if (cdHours) cdHours.textContent = String(hours).padStart(2, '0');
+            if (cdMinutes) cdMinutes.textContent = String(minutes).padStart(2, '0');
+            if (cdSeconds) cdSeconds.textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    }
+
+    startCountdown();
 });
