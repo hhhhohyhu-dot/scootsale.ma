@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const langBtn = document.getElementById('lang-btn');
     const currentLangText = document.getElementById('current-lang');
     
-    // Check saved language
-    let currentLang = localStorage.getItem('scootsale-lang') || 'fr';
+    // Check saved language (Default to Arabic)
+    let currentLang = localStorage.getItem('scootsale-lang') || 'ar';
     
     function applyTranslations(lang) {
         if (typeof translations === 'undefined' || !translations[lang]) return;
