@@ -176,11 +176,19 @@ section {
 .delay-4 { transition-delay: 0.4s; }
 .delay-5 { transition-delay: 0.5s; }
 
-/* Marquee Banner */
-.marquee-wrapper {
+/* Header Group */
+.header-group {
     position: fixed;
     top: 0;
     left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Marquee Banner */
+.marquee-wrapper {
     width: 100%;
     height: 40px;
     background-color: #0c151e;
@@ -189,7 +197,6 @@ section {
     display: flex;
     align-items: center;
     overflow: hidden;
-    z-index: 1001;
 }
 
 .marquee {
@@ -222,15 +229,12 @@ section {
 
 /* Navbar */
 .navbar {
-    position: fixed;
-    top: 40px;
-    left: 0;
+    position: relative;
     width: 100%;
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000;
     border-bottom: 1px solid var(--glass-border);
 }
 
