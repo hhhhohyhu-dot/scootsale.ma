@@ -87,7 +87,60 @@ const translations = {
         "cart_empty": "Votre panier est vide.",
         "cart_total": "Total:",
         "cart_checkout": "Commander sur WhatsApp",
-        "toast_added": "Ajouté au panier avec succès !"
+        "toast_added": "Ajouté au panier avec succès !",
+
+        "stat_clients": "Clients Satisfaits",
+        "stat_sold": "Scooters Vendus",
+        "stat_delivery": "Livraison Express",
+        "stat_cities": "Villes Desservies",
+
+        "promo_title": "OFFRE LIMITÉE !",
+        "promo_desc": "Jusqu'à <strong>-15%</strong> sur tous les modèles Tank M41",
+        "promo_btn": "Profitez-en →",
+        "cd_days": "Jours",
+        "cd_hours": "Heures",
+        "cd_min": "Min",
+        "cd_sec": "Sec",
+
+        "products_subtitle": "Chaque scooter est testé, vérifié et livré avec une garantie officielle de 1 an.",
+
+        "sec_how": "Comment Ça Marche ?",
+        "how_subtitle": "Commander votre trottinette est simple et rapide",
+        "step1_title": "Choisissez",
+        "step1_desc": "Parcourez notre catalogue et trouvez le modèle qui correspond à vos besoins.",
+        "step2_title": "Commandez",
+        "step2_desc": "Passez votre commande via WhatsApp ou directement sur le site. Paiement à la livraison accepté.",
+        "step3_title": "Recevez",
+        "step3_desc": "Livraison rapide chez vous en 24h-72h. Testez votre scooter avant de payer.",
+
+        "sec_guarantees": "Nos Engagements",
+        "guarantees_subtitle": "Achetez en toute confiance. Chaque achat est protégé.",
+        "guar1_title": "Garantie 1 An",
+        "guar1_desc": "Moteur, batterie et composants électroniques couverts pendant 12 mois contre tout défaut de fabrication.",
+        "guar2_title": "Pièces de Rechange",
+        "guar2_desc": "Stock permanent de pièces détachées pour tous les modèles. Réparation rapide garantie.",
+        "guar3_title": "Retour Sous 7 Jours",
+        "guar3_desc": "Pas satisfait ? Retournez votre scooter dans les 7 jours suivant la réception pour un remboursement.",
+        "guar4_title": "Paiement à la Livraison",
+        "guar4_desc": "Payez uniquement à la réception de votre scooter. Testez-le avant de payer, sans engagement.",
+
+        "sec_cities": "Livraison Partout au Maroc 🇲🇦",
+        "cities_subtitle": "Nous livrons dans plus de 40 villes à travers tout le Royaume",
+        "cities_more": "Et toutes les autres villes...",
+
+        "sec_social": "Rejoignez la Communauté ScootSale 🚀",
+        "social_desc": "Suivez-nous pour des offres exclusives, des vidéos et des témoignages clients",
+
+        "faq1_q": "Quels sont vos options et délais de livraison ?",
+        "faq1_a": "Nous offrons une livraison rapide dans toutes les villes du Maroc. Les commandes sont généralement traitées dans les 24 heures et livrées en 1 à 3 jours ouvrables selon votre localisation.",
+        "faq2_q": "Vos scooters sont-ils garantis ?",
+        "faq2_a": "Oui, tous nos scooters électriques sont couverts par une garantie officielle d'un an qui couvre le moteur, la batterie et les composants électroniques contre les défauts de fabrication.",
+        "faq3_q": "Quels modes de paiement acceptez-vous ?",
+        "faq3_a": "Nous acceptons le paiement à la livraison (COD), les virements bancaires et les paiements sécurisés par carte de crédit en ligne. Vous pouvez inspecter votre scooter avant de payer avec le COD.",
+        "faq4_q": "Comment entretenir la batterie pour qu'elle dure plus longtemps ?",
+        "faq4_a": "Pour maximiser la durée de vie de la batterie, évitez de la vider complètement à 0%. Rechargez-la quand elle descend à 20%. Rangez le scooter dans un endroit frais et sec et chargez-le au moins une fois par mois si vous ne l'utilisez pas.",
+        "faq5_q": "Offrez-vous des services de réparation et d'entretien ?",
+        "faq5_a": "Oui, nous avons une équipe de support technique dédiée et des centres de réparation. Nous fournissons également des pièces de rechange pour tous les modèles que nous vendons."
     },
     ar: {
         "nav_home": "الرئيسية",
@@ -177,6 +230,59 @@ const translations = {
         "cart_empty": "سلتك فارغة.",
         "cart_total": "المجموع:",
         "cart_checkout": "اطلب عبر واتساب",
-        "toast_added": "تمت الإضافة إلى السلة بنجاح!"
+        "toast_added": "تمت الإضافة إلى السلة بنجاح!",
+
+        "stat_clients": "عملاء راضون",
+        "stat_sold": "سكوتر مباع",
+        "stat_delivery": "توصيل سريع",
+        "stat_cities": "مدينة نغطيها",
+
+        "promo_title": "!عرض محدود",
+        "promo_desc": "خصم يصل إلى <strong>-15%</strong> على جميع موديلات Tank M41",
+        "promo_btn": "← استفد الآن",
+        "cd_days": "أيام",
+        "cd_hours": "ساعات",
+        "cd_min": "دقيقة",
+        "cd_sec": "ثانية",
+
+        "products_subtitle": "كل سكوتر مختبر ومفحوص ويأتي بضمان رسمي لمدة سنة.",
+
+        "sec_how": "كيف يعمل ؟",
+        "how_subtitle": "طلب سكوترك بسيط وسريع",
+        "step1_title": "اختر",
+        "step1_desc": "تصفح كتالوجنا وابحث عن الموديل الذي يناسب احتياجاتك.",
+        "step2_title": "اطلب",
+        "step2_desc": "قدم طلبك عبر واتساب أو مباشرة على الموقع. الدفع عند الاستلام مقبول.",
+        "step3_title": "استلم",
+        "step3_desc": "توصيل سريع إلى منزلك في 24-72 ساعة. جرب السكوتر قبل الدفع.",
+
+        "sec_guarantees": "التزاماتنا",
+        "guarantees_subtitle": "اشترِ بثقة تامة. كل عملية شراء محمية.",
+        "guar1_title": "ضمان سنة",
+        "guar1_desc": "المحرك والبطارية والمكونات الإلكترونية مغطاة لمدة 12 شهرًا ضد أي عيب تصنيع.",
+        "guar2_title": "قطع الغيار",
+        "guar2_desc": "مخزون دائم من قطع الغيار لجميع الموديلات. إصلاح سريع مضمون.",
+        "guar3_title": "إرجاع خلال 7 أيام",
+        "guar3_desc": "غير راضٍ؟ أرجع السكوتر خلال 7 أيام من الاستلام لاسترداد المبلغ.",
+        "guar4_title": "الدفع عند الاستلام",
+        "guar4_desc": "ادفع فقط عند استلام السكوتر. جربه قبل الدفع، بدون التزام.",
+
+        "sec_cities": "توصيل في جميع أنحاء المغرب 🇲🇦",
+        "cities_subtitle": "نوصل لأكثر من 40 مدينة في جميع أنحاء المملكة",
+        "cities_more": "وجميع المدن الأخرى...",
+
+        "sec_social": "انضم إلى مجتمع ScootSale 🚀",
+        "social_desc": "تابعنا للحصول على عروض حصرية وفيديوهات وآراء العملاء",
+
+        "faq1_q": "ما هي خيارات ومواعيد التوصيل؟",
+        "faq1_a": "نوفر توصيلًا سريعًا لجميع مدن المغرب. يتم معالجة الطلبات عادةً خلال 24 ساعة وتوصيلها في 1-3 أيام عمل حسب موقعك.",
+        "faq2_q": "هل السكوترات تأتي بضمان؟",
+        "faq2_a": "نعم، جميع سكوتراتنا الكهربائية تأتي بضمان رسمي لمدة سنة يغطي المحرك والبطارية والمكونات الإلكترونية ضد عيوب التصنيع.",
+        "faq3_q": "ما هي طرق الدفع المقبولة؟",
+        "faq3_a": "نقبل الدفع عند الاستلام (COD) والتحويلات البنكية والدفع الآمن بالبطاقة البنكية عبر الإنترنت. يمكنك فحص السكوتر قبل الدفع عند الاستلام.",
+        "faq4_q": "كيف أحافظ على البطارية لتدوم أطول؟",
+        "faq4_a": "لتعظيم عمر البطارية، تجنب تفريغها بالكامل إلى 0%. أعد شحنها عندما تنخفض إلى 20%. احفظ السكوتر في مكان بارد وجاف واشحنه مرة واحدة على الأقل شهريًا إذا لم تستخدمه.",
+        "faq5_q": "هل تقدمون خدمات إصلاح وصيانة؟",
+        "faq5_a": "نعم، لدينا فريق دعم تقني مخصص ومراكز إصلاح. كما نوفر قطع الغيار لجميع الموديلات التي نبيعها."
     }
 };
