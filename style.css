@@ -176,10 +176,54 @@ section {
 .delay-4 { transition-delay: 0.4s; }
 .delay-5 { transition-delay: 0.5s; }
 
+/* Marquee Banner */
+.marquee-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background-color: #0c151e;
+    background-image: radial-gradient(circle, rgba(0,168,255,0.05) 0%, rgba(0,0,0,0) 70%);
+    border-bottom: 1px solid rgba(0, 168, 255, 0.2);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.marquee {
+    display: flex;
+    white-space: nowrap;
+    animation: marquee 25s linear infinite;
+}
+
+.marquee span {
+    color: #00a8ff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 8px rgba(0, 168, 255, 0.5);
+    padding: 0 10px;
+}
+
+.marquee .dot {
+    color: #00a8ff;
+    font-size: 20px;
+    line-height: 0;
+    padding: 0 25px;
+    text-shadow: 0 0 10px rgba(0, 168, 255, 0.8);
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
 /* Navbar */
 .navbar {
     position: fixed;
-    top: 0;
+    top: 40px;
     left: 0;
     width: 100%;
     padding: 1rem 2rem;
