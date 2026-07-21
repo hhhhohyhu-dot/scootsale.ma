@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover powerful electric scooters with premium quality, fast delivery, and warranty. Ride the Future with ScootSale.">
+    <title>ScootSale - Ride the Future</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar glass">
+        <div class="logo">
+            <h2>SCOOT<span>SALE</span></h2>
+        </div>
+        <nav class="nav-links">
+            <a href="#hero" data-i18n="nav_home">Home</a>
+            <a href="#products" data-i18n="nav_scooters">Scooters</a>
+            <a href="#compare" data-i18n="nav_compare">Compare</a>
+            <a href="#features" data-i18n="nav_features">Features</a>
+            <a href="#reviews" data-i18n="nav_reviews">Reviews</a>
+            <a href="#faq" data-i18n="nav_faq">FAQ</a>
+        </nav>
+        <div class="nav-actions">
+            <div class="cart-icon-wrapper" id="cart-icon-btn">
+                <i class="ri-shopping-cart-2-line"></i>
+                <span class="cart-badge" id="cart-badge">0</span>
+            </div>
+            <a href="#contact" class="btn btn-outline btn-pill" data-i18n="nav_contact">Contact Us</a>
+                        <div class="lang-switch" id="lang-btn">
+                <i class="ri-global-line"></i> <span id="current-lang">FR</span>
+            </div>\n            <div class="mobile-menu-btn"><i class="ri-menu-4-line"></i></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-overlay"></div>
+        <!-- Using a high quality related background -->
+        <div class="hero-bg" style="background-image: url('https://jouet-maroc.com/images/slider2/m41-tank-double-moteur-08.webp');"></div>
+        <div class="hero-content">
+            <h1 class="reveal-up" data-i18n="hero_title">Ride the Future</h1>
+            <p class="reveal-up delay-1" data-i18n="hero_desc">Discover powerful electric scooters with premium quality, fast delivery and warranty.</p>
+            <div class="hero-buttons reveal-up delay-2">
+                <a href="#products" class="btn btn-primary" data-i18n="hero_shop">Shop Now</a>
+                <a href="https://wa.me/212607436420" target="_blank" class="btn btn-whatsapp"><i class="ri-whatsapp-line"></i> <span data-i18n="hero_whatsapp">Contact on WhatsApp</span></a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span data-i18n="hero_scroll">Scroll Down</span>
+            <i class="ri-arrow-down-s-line"></i>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sec_scooters">Our Premium Scooters</h2>
+            <div class="product-grid">
+
+                <!-- Product 1: Tank M41 1000W -->
+                <div class="product-card glass reveal-up">
+                    <div class="product-badge" data-i18n="badge_new">New</div>
+                    <div class="product-image">
+                        <img src="https://www.youpi.co.ma/media/catalog/product/cache/b2a903590bf5811a6a8133497cd08906/m/4/m41-tank.jpg" alt="Tank M41 1000W">
+                    </div>
+                    <div class="product-info">
+                        <h3>Tank M41 1000W</h3>
+                        <p class="price">4,999 MAD</p>
+                        <div class="specs-mini">
+                            <span><i class="ri-flashlight-line"></i> 1000W</span>
+                            <span><i class="ri-dashboard-3-line"></i> 55 km/h</span>
+                            <span><i class="ri-battery-2-charge-line"></i> 40-50 km</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-block buy-now-btn" data-id="1" data-i18n="btn_buy">Buy Now</button>
+                            <button class="btn btn-outline btn-block view-details-btn" data-id="1" data-i18n="btn_view">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2: Armored -->
+                <div class="product-card glass reveal-up delay-1">
+                    <div class="product-badge discount" data-i18n="badge_discount">-10%</div>
+                    <div class="product-image">
+                        <img src="https://jouet-maroc.com/images-clients/tank-m41/tank-3.jpg" alt="Armored">
+                    </div>
+                    <div class="product-info">
+                        <h3>Tank M41 Armored</h3>
+                        <p class="price"><span class="old-price">5,500 MAD</span> 4,950 MAD</p>
+                        <div class="specs-mini">
+                            <span><i class="ri-flashlight-line"></i> 1200W</span>
+                            <span><i class="ri-dashboard-3-line"></i> 60 km/h</span>
+                            <span><i class="ri-battery-2-charge-line"></i> 50 km</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-block buy-now-btn" data-id="2" data-i18n="btn_buy">Buy Now</button>
+                            <button class="btn btn-outline btn-block view-details-btn" data-id="2" data-i18n="btn_view">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3: Ultimate 2000W -->
+                <div class="product-card glass reveal-up delay-2">
+                    <div class="product-badge hot" data-i18n="badge_hot">Hot</div>
+                    <div class="product-image">
+                        <img src="https://jouet-maroc.com/images/slider/trottinette-tank-m41-01.webp" alt="Ultimate 2000W">
+                    </div>
+                    <div class="product-info">
+                        <h3>Tank Ultimate 2000W</h3>
+                        <p class="price">6,499 MAD</p>
+                        <div class="specs-mini">
+                            <span><i class="ri-flashlight-line"></i> 2000W</span>
+                            <span><i class="ri-dashboard-3-line"></i> 68 km/h</span>
+                            <span><i class="ri-battery-2-charge-line"></i> 60 km</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-block buy-now-btn" data-id="3" data-i18n="btn_buy">Buy Now</button>
+                            <button class="btn btn-outline btn-block view-details-btn" data-id="3" data-i18n="btn_view">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4: Double Motor -->
+                <div class="product-card glass reveal-up delay-3">
+                    <div class="product-badge premium" data-i18n="badge_premium">Premium</div>
+                    <div class="product-image">
+                        <img src="https://jouet-maroc.com/images/slider2/m41-tank-double-moteur-01.webp" alt="Tank Double Motor">
+                    </div>
+                    <div class="product-info">
+                        <h3>Tank Double Motor</h3>
+                        <p class="price">8,999 MAD</p>
+                        <div class="specs-mini">
+                            <span><i class="ri-flashlight-line"></i> 2x1000W</span>
+                            <span><i class="ri-dashboard-3-line"></i> 99 km/h</span>
+                            <span><i class="ri-battery-2-charge-line"></i> 65 km</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-primary btn-block buy-now-btn" data-id="4" data-i18n="btn_buy">Buy Now</button>
+                            <button class="btn btn-outline btn-block view-details-btn" data-id="4" data-i18n="btn_view">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Product Details -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content glass">
+            <span class="close-modal"><i class="ri-close-line"></i></span>
+            <div class="modal-body">
+                <div class="modal-gallery">
+                    <div class="main-image">
+                        <img id="modal-main-img" src="" alt="Scooter">
+                    </div>
+                    <div class="thumbnail-list" id="modal-thumbnails">
+                        <!-- Thumbnails injected via JS -->
+                    </div>
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-title">Scooter Name</h2>
+                    <div class="price-container">
+                        <span class="old-price" id="modal-old-price"></span>
+                        <span class="modal-price" id="modal-price">0 DH</span>
+                    </div>
+                    <ul class="modal-specs-list">
+                        <li><span class="spec-label" data-i18n="modal_brand">Marque / Modèle :</span> <span id="modal-marque">...</span></li>
+                        <li><span class="spec-label" data-i18n="modal_color">Couleur :</span> <span id="modal-couleur">...</span></li>
+                        <li><span class="spec-label" data-i18n="modal_power">Puissance :</span> <span id="modal-motor">...</span></li>
+                        <li><span class="spec-label" data-i18n="modal_battery">Batterie :</span> <span id="modal-battery">...</span></li>
+                        <li><span class="spec-label" data-i18n="modal_speed">Vitesse maximale :</span> <span id="modal-speed">...</span></li>
+                        <li><span class="spec-label" data-i18n="modal_range">Autonomie :</span> <span id="modal-range">...</span></li>
+                        <li><span class="spec-label" data-i18n="modal_tires">Pneus :</span> <span id="modal-pneus">...</span></li>
+                        <li><span class="spec-label" data-i18n="modal_susp">Suspensions :</span> <span id="modal-suspensions">...</span></li>
+                        <li><span class="spec-label" data-i18n="modal_equip">Équipements :</span> <span id="modal-equipements">...</span></li>
+                    </ul>
+
+                    <div class="modal-actions-row">
+                        <div class="quantity-selector">
+                            <button class="qty-btn" id="qty-minus">-</button>
+                            <input type="number" id="qty-input" value="1" min="1" readonly>
+                            <button class="qty-btn" id="qty-plus">+</button>
+                        </div>
+                        <button class="btn btn-dark" id="modal-add-cart" data-i18n="modal_add_cart">Ajouter au panier</button>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-block buy-now-btn" id="modal-buy-now" data-i18n="modal_order_now">Commander Maintenant</button>
+
+                    <div class="live-viewers glass">
+                        <div class="live-dot-container">
+                            <div class="live-dot"></div>
+                            <i class="ri-eye-line"></i>
+                            <strong><span id="live-count">33</span></strong>
+                        </div>
+                        <span class="live-text" data-i18n="modal_live_text">personnes regardent ce produit</span>
+                        <span class="live-badge"><div class="live-dot-small"></div> <span data-i18n="modal_live_badge">EN DIRECT</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comparison Section -->
+    <section id="compare" class="compare section-dark">
+        <div class="container">
+            <h2 class="section-title text-white" data-i18n="sec_compare">Compare Models</h2>
+            <div class="table-container reveal-up">
+                <table class="compare-table glass">
+                    <thead>
+                        <tr>
+                            <th data-i18n="comp_feature">Feature</th>
+                            <th>Tank M41 1000W</th>
+                            <th>Tank Armored</th>
+                            <th>Ultimate 2000W</th>
+                            <th>Tank Double Motor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-i18n="comp_motor">Motor Power</td>
+                            <td>1000W</td>
+                            <td>1200W</td>
+                            <td>2000W</td>
+                            <td>2x1000W (4000W Peak)</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="comp_batt">Battery</td>
+                            <td>48V 13Ah</td>
+                            <td>48V 15Ah</td>
+                            <td>48V 16Ah</td>
+                            <td>52V 20Ah</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="comp_speed">Max Speed</td>
+                            <td>55 km/h</td>
+                            <td>60 km/h</td>
+                            <td>68 km/h</td>
+                            <td>99 km/h</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="comp_range">Range</td>
+                            <td>40-50 km</td>
+                            <td>50 km</td>
+                            <td>35-60 km</td>
+                            <td>45-65 km</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="comp_susp">Suspension</td>
+                            <td>Front / Rear</td>
+                            <td>Dual Spring</td>
+                            <td>C "Z" Suspension</td>
+                            <td>Hydraulic Dual</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="comp_brakes">Brakes</td>
+                            <td>Disc Brakes</td>
+                            <td>Disc + E-ABS</td>
+                            <td>Disc + E-ABS</td>
+                            <td>Hydraulic + E-ABS</td>
+                        </tr>
+                        <tr>
+                            <td data-i18n="comp_tires">Tires</td>
+                            <td>10" Off-road</td>
+                            <td>10" Tubeless</td>
+                            <td>11" Off-road</td>
+                            <td>10" Off-road Tubeless</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sec_features">Why Choose Us</h2>
+            <div class="feature-grid">
+                <div class="feature-card reveal-up">
+                    <div class="icon"><i class="ri-truck-line"></i></div>
+                    <h3 data-i18n="feat1_title">Fast Delivery</h3>
+                    <p data-i18n="feat1_desc">Express shipping across all cities in Morocco.</p>
+                </div>
+                <div class="feature-card reveal-up delay-1">
+                    <div class="icon"><i class="ri-shield-check-line"></i></div>
+                    <h3 data-i18n="feat2_title">Official Warranty</h3>
+                    <p data-i18n="feat2_desc">All our scooters come with an official 1-year warranty.</p>
+                </div>
+                <div class="feature-card reveal-up delay-2">
+                    <div class="icon"><i class="ri-secure-payment-line"></i></div>
+                    <h3 data-i18n="feat3_title">Secure Payment</h3>
+                    <p data-i18n="feat3_desc">100% secure payment methods, including cash on delivery.</p>
+                </div>
+                <div class="feature-card reveal-up delay-3">
+                    <div class="icon"><i class="ri-customer-service-2-line"></i></div>
+                    <h3 data-i18n="feat4_title">Premium Support</h3>
+                    <p data-i18n="feat4_desc">24/7 dedicated customer support to help you anytime.</p>
+                </div>
+                <div class="feature-card reveal-up delay-4">
+                    <div class="icon"><i class="ri-rocket-line"></i></div>
+                    <h3 data-i18n="feat5_title">High Performance</h3>
+                    <p data-i18n="feat5_desc">Unmatched power and speed for thrill-seekers.</p>
+                </div>
+                <div class="feature-card reveal-up delay-5">
+                    <div class="icon"><i class="ri-star-smile-line"></i></div>
+                    <h3 data-i18n="feat6_title">Original Products</h3>
+                    <p data-i18n="feat6_desc">We guarantee 100% authentic and original scooters.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery section-dark">
+        <div class="container">
+            <h2 class="section-title text-white" data-i18n="sec_gallery">Image Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal-up">
+                    <img src="https://jouet-maroc.com/images-clients/tank-m41/tank-1.jpg" alt="Gallery Image 1">
+                    <div class="gallery-overlay"><i class="ri-search-eye-line"></i></div>
+                </div>
+                <div class="gallery-item reveal-up delay-1">
+                    <img src="https://jouet-maroc.com/images/slider2/m41-tank-double-moteur-04.webp" alt="Gallery Image 2">
+                    <div class="gallery-overlay"><i class="ri-search-eye-line"></i></div>
+                </div>
+                <div class="gallery-item reveal-up delay-2">
+                    <img src="https://jouet-maroc.com/images-clients/tank-m41/tank-4.jpg" alt="Gallery Image 3">
+                    <div class="gallery-overlay"><i class="ri-search-eye-line"></i></div>
+                </div>
+                <div class="gallery-item reveal-up delay-3">
+                    <img src="https://jouet-maroc.com/images/slider2/m41-tank-double-moteur-06.webp" alt="Gallery Image 4">
+                    <div class="gallery-overlay"><i class="ri-search-eye-line"></i></div>
+                </div>
+                <div class="gallery-item reveal-up delay-4">
+                    <img src="https://jouet-maroc.com/images-clients/tank-m41/tank-7.jpg" alt="Gallery Image 5">
+                    <div class="gallery-overlay"><i class="ri-search-eye-line"></i></div>
+                </div>
+                <div class="gallery-item reveal-up delay-5">
+                    <img src="https://jouet-maroc.com/images/slider2/m41-tank-double-moteur-10.webp" alt="Gallery Image 6">
+                    <div class="gallery-overlay"><i class="ri-search-eye-line"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="reviews" class="testimonials">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sec_reviews">What Our Customers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card glass reveal-up">
+                    <div class="stars">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                    </div>
+                    <p class="review-text">"Une trottinette exceptionnelle ! Le moteur est vraiment puissant, les suspensions absorbent bien les chocs et l'autonomie est conforme à ce qui est annoncé."</p>
+                    <div class="customer">
+                        <div class="avatar">Y</div>
+                        <div>
+                            <h4>Youssef M.</h4>
+                            <span>Casablanca</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass reveal-up delay-1">
+                    <div class="stars">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                    </div>
+                    <p class="review-text">"Excellent rapport qualité-prix. La trottinette est robuste et stable même à haute vitesse. Livraison en 24h sur Rabat, service au top!"</p>
+                    <div class="customer">
+                        <div class="avatar">S</div>
+                        <div>
+                            <h4>Sara B.</h4>
+                            <span>Rabat</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card glass reveal-up delay-2">
+                    <div class="stars">
+                        <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                    </div>
+                    <p class="review-text">"The Ultimate 2000W is a beast! It climbs hills easily and the battery lasts for days. Best purchase I've made this year. Highly recommend ScootSale."</p>
+                    <div class="customer">
+                        <div class="avatar">A</div>
+                        <div>
+                            <h4>Amine T.</h4>
+                            <span>Marrakech</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq section-dark">
+        <div class="container">
+            <h2 class="section-title text-white" data-i18n="sec_faq">Frequently Asked Questions</h2>
+            <div class="faq-container reveal-up">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What are your delivery options and times?</h3>
+                        <i class="ri-add-line"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer fast delivery across all cities in Morocco. Orders are typically processed within 24 hours and delivered within 1-3 business days depending on your location.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do your scooters come with a warranty?</h3>
+                        <i class="ri-add-line"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, all our electric scooters come with a 1-year official warranty that covers the motor, battery, and electronic components against manufacturing defects.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What payment methods do you accept?</h3>
+                        <i class="ri-add-line"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept Cash on Delivery (COD), bank transfers, and secure online credit card payments. You can inspect your scooter before paying with COD.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I maintain the battery for a longer lifespan?</h3>
+                        <i class="ri-add-line"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To maximize battery life, avoid fully draining it to 0%. Try to recharge when it drops to 20%. Store the scooter in a cool, dry place and charge it at least once a month if not in use.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do you offer repair and maintenance services?</h3>
+                        <i class="ri-add-line"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we have a dedicated technical support team and repair centers. We also supply spare parts for all the models we sell.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sec_contact">Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info reveal-up">
+                    <div class="contact-card glass">
+                        <i class="ri-whatsapp-line text-green"></i>
+                        <h3>WhatsApp</h3>
+                        <p>+212 607-436420</p>
+                        <a href="https://wa.me/212607436420" class="link" data-i18n="contact_wa">Chat with us</a>
+                    </div>
+                    <div class="contact-card glass mt-4">
+                        <i class="ri-instagram-line"></i>
+                        <h3>Instagram</h3>
+                        <p>@scootsale.ma</p>
+                        <a href="#" class="link" data-i18n="contact_ig">Follow us</a>
+                    </div>
+                    <div class="contact-card glass mt-4">
+                        <i class="ri-phone-line"></i>
+                        <h3>Phone</h3>
+                        <p>+212 607-436420</p>
+                        <p data-i18n="contact_phone">Mon - Sat, 9am - 6pm</p>
+                    </div>
+                </div>
+                <div class="contact-form-container glass reveal-up delay-1">
+                    <h3 data-i18n="contact_form_title">Send us a message</h3>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Full Name" data-i18n-placeholder="form_name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" data-i18n-placeholder="form_email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Phone Number" data-i18n-placeholder="form_phone">
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" data-i18n-placeholder="form_msg" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block" data-i18n="form_submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="map-container reveal-up delay-2">
+                <!-- Google Maps Placeholder -->
+                <div class="map-placeholder">
+                    <i class="ri-map-pin-line"></i>
+                    <p>ScootSale Showroom - Settat, Morocco</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h2>SCOOT<span>SALE</span></h2>
+                    <div class="footer-about" style="margin-bottom: 1.5rem; line-height: 1.8; color: var(--color-light-gray);" data-i18n="footer_desc">
+                        <strong>Product/service</strong><br>
+                        ⚡ La Référence des Trottinettes Électriques<br>
+                        💰 Vente • Achat • Dépôt-Vente<br>
+                        🔎 Nous Trouvons le Modèle Qu'il Vous Faut<br>
+                        📲 WhatsApp ☎️: 0607436420<br>
+                        📍 Settat
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="ri-facebook-circle-fill"></i></a>
+                        <a href="#"><i class="ri-instagram-fill"></i></a>
+                        <a href="#"><i class="ri-tiktok-fill"></i></a>
+                        <a href="#"><i class="ri-youtube-fill"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 data-i18n="footer_links_title">Quick Links</h3>
+                    <ul>
+                        <li><a href="#hero" data-i18n="nav_home">Home</a></li>
+                        <li><a href="#products">Shop Scooters</a></li>
+                        <li><a href="#compare">Compare Models</a></li>
+                        <li><a href="#reviews">Testimonials</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3 data-i18n="footer_cat_title">Categories</h3>
+                    <ul>
+                        <li><a href="#">City Scooters</a></li>
+                        <li><a href="#">Off-Road Scooters</a></li>
+                        <li><a href="#">Dual Motor</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Spare Parts</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3 data-i18n="footer_news_title">Newsletter</h3>
+                    <p data-i18n="footer_news_desc">Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit"><i class="ri-send-plane-fill"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_rights">&copy; 2026 ScootSale.ma. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="ri-visa-line"></i>
+                    <i class="ri-mastercard-line"></i>
+                    <i class="ri-paypal-line"></i>
+                    <span>Cash on Delivery</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <div id="toast" class="toast"><i class="ri-check-line"></i> <span data-i18n="toast_added">Ajouté au panier avec succès !</span></div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" src="">
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="cart-header">
+            <h2 data-i18n="cart_title">Votre Panier</h2>
+            <button class="cart-close" id="cart-close">&times;</button>
+        </div>
+        <div class="cart-body" id="cart-body">
+            <!-- Cart Items Injected Here -->
+            <div class="empty-cart-msg" id="empty-cart-msg">
+                <i class="ri-shopping-cart-2-line"></i>
+                <p data-i18n="cart_empty">Votre panier est vide.</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span data-i18n="cart_total">Total:</span>
+                <strong id="cart-total-price">0.00 DH</strong>
+            </div>
+            <button class="btn btn-primary btn-block" id="cart-checkout-btn">
+                <i class="ri-whatsapp-line"></i> <span data-i18n="cart_checkout">Commander sur WhatsApp</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="translations.js"></script>\n    <script src="script.js"></script>
+</body>
+</html>
