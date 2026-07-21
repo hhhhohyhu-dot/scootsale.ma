@@ -87,6 +87,33 @@ const scooters = {
 document.addEventListener('DOMContentLoaded', () => {
     let cart = [];
     
+    // --- Theme Switcher Logic ---
+    const themeBtn = document.getElementById('theme-btn');
+    const themeIcon = themeBtn.querySelector('i');
+    
+    // Check saved theme (Default to dark)
+    let currentTheme = localStorage.getItem('scootsale-theme') || 'dark';
+    
+    if (currentTheme === 'light') {
+        document.body.classList.add('light-mode');
+        themeIcon.className = 'ri-sun-line';
+    } else {
+        document.body.classList.remove('light-mode');
+        themeIcon.className = 'ri-moon-line';
+    }
+    
+    themeBtn.addEventListener('click', () => {
+        if (document.body.classList.contains('light-mode')) {
+            document.body.classList.remove('light-mode');
+            themeIcon.className = 'ri-moon-line';
+            localStorage.setItem('scootsale-theme', 'dark');
+        } else {
+            document.body.classList.add('light-mode');
+            themeIcon.className = 'ri-sun-line';
+            localStorage.setItem('scootsale-theme', 'light');
+        }
+    });
+    
     // --- Language Translation Logic ---
     const langBtn = document.getElementById('lang-btn');
     const currentLangText = document.getElementById('current-lang');
