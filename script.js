@@ -87,6 +87,43 @@ const scooters = {
 document.addEventListener('DOMContentLoaded', () => {
     let cart = [];
     
+    // --- Mobile Menu Toggle ---
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (mobileMenuBtn && navLinks) {
+        mobileMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (icon) {
+                if (navLinks.classList.contains('active')) {
+                    icon.className = 'ri-close-line';
+                } else {
+                    icon.className = 'ri-menu-4-line';
+                }
+            }
+        });
+
+        // Close menu when clicking any nav link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) icon.className = 'ri-menu-4-line';
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) icon.className = 'ri-menu-4-line';
+            }
+        });
+    }
+
     // --- Theme Switcher Logic ---
     const themeBtn = document.getElementById('theme-btn');
     const themeIcon = themeBtn.querySelector('i');
