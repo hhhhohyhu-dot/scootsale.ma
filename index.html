@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Scroll Progress Bar (Feature 10) -->
+    <div class="scroll-progress-container"><div class="scroll-progress-bar" id="scroll-progress"></div></div>
 
     <!-- Header Group -->
     <div class="header-group">
@@ -156,22 +158,49 @@
         </div>
     </section>
 
-    <!-- Products Section -->
     <section id="products" class="products">
         <div class="container">
             <h2 class="section-title" data-i18n="sec_scooters">Our Premium Scooters</h2>
             <p class="section-subtitle" data-i18n="products_subtitle">Chaque scooter est testé, vérifié et livré avec une garantie officielle de 1 an.</p>
-            <div class="product-grid">
+            
+            <!-- Filter & Sort Controls (Feature 7) -->
+            <div class="filter-controls reveal-up">
+                <div class="filter-group">
+                    <span data-i18n="filter_category" style="font-weight: 600;">Category:</span>
+                    <div class="filter-btn-group">
+                        <button class="filter-btn active" data-filter="all" data-i18n="filter_all">All</button>
+                        <button class="filter-btn" data-filter="city" data-i18n="filter_city">City</button>
+                        <button class="filter-btn" data-filter="offroad" data-i18n="filter_offroad">Off-Road</button>
+                        <button class="filter-btn" data-filter="dual" data-i18n="filter_dual">Dual Motor</button>
+                    </div>
+                </div>
+                <div class="filter-group slider-container">
+                    <span data-i18n="filter_max_price" style="font-weight: 600;">Max Price:</span>
+                    <input type="range" class="custom-range-slider" id="price-filter-slider" min="4000" max="10000" step="500" value="10000">
+                    <span id="price-slider-value" style="font-weight: bold; color: var(--color-green);">10,000 DH</span>
+                </div>
+                <div class="filter-group">
+                    <span data-i18n="filter_sort" style="font-weight: 600;">Sort by:</span>
+                    <select class="sort-select" id="product-sort-select">
+                        <option value="default" data-i18n="sort_default">Default</option>
+                        <option value="price-asc" data-i18n="sort_price_asc">Price: Low to High</option>
+                        <option value="price-desc" data-i18n="sort_price_desc">Price: High to Low</option>
+                        <option value="speed-desc" data-i18n="sort_speed_desc">Speed: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-grid" id="product-cards-container">
 
                 <!-- Product 1: Tank M41 1000W -->
-                <div class="product-card glass reveal-up">
+                <div class="product-card glass reveal-up" data-price="6099" data-speed="55" data-category="city">
                     <div class="product-badge" data-i18n="badge_new">New</div>
                     <div class="product-image">
                         <img src="https://www.youpi.co.ma/media/catalog/product/cache/b2a903590bf5811a6a8133497cd08906/m/4/m41-tank.jpg" alt="Tank M41 1000W">
                     </div>
                     <div class="product-info">
                         <h3>Tank M41 1000W</h3>
-                        <p class="price">4,999 MAD</p>
+                        <p class="price">6,099 MAD</p>
                         <div class="specs-mini">
                             <span><i class="ri-flashlight-line"></i> 1000W</span>
                             <span><i class="ri-dashboard-3-line"></i> 55 km/h</span>
@@ -185,7 +214,7 @@
                 </div>
 
                 <!-- Product 2: Armored -->
-                <div class="product-card glass reveal-up delay-1">
+                <div class="product-card glass reveal-up delay-1" data-price="4950" data-speed="60" data-category="offroad">
                     <div class="product-badge discount" data-i18n="badge_discount">-10%</div>
                     <div class="product-image">
                         <img src="https://jouet-maroc.com/images-clients/tank-m41/tank-3.jpg" alt="Armored">
@@ -206,7 +235,7 @@
                 </div>
 
                 <!-- Product 3: Ultimate 2000W -->
-                <div class="product-card glass reveal-up delay-2">
+                <div class="product-card glass reveal-up delay-2" data-price="6499" data-speed="68" data-category="offroad">
                     <div class="product-badge hot" data-i18n="badge_hot">Hot</div>
                     <div class="product-image">
                         <img src="https://jouet-maroc.com/images/slider/trottinette-tank-m41-01.webp" alt="Ultimate 2000W">
@@ -227,7 +256,7 @@
                 </div>
 
                 <!-- Product 4: Double Motor -->
-                <div class="product-card glass reveal-up delay-3">
+                <div class="product-card glass reveal-up delay-3" data-price="8999" data-speed="99" data-category="dual">
                     <div class="product-badge premium" data-i18n="badge_premium">Premium</div>
                     <div class="product-image">
                         <img src="https://jouet-maroc.com/images/slider2/m41-tank-double-moteur-01.webp" alt="Tank Double Motor">
@@ -282,7 +311,39 @@
                         <li><span class="spec-label" data-i18n="modal_equip">Équipements :</span> <span id="modal-equipements">...</span></li>
                     </ul>
 
-                    <div class="modal-actions-row">
+                    <!-- Scooter Customizer (Feature 1) -->
+                    <div class="customizer-section">
+                        <h4 class="customizer-title"><i class="ri-palette-line"></i> <span data-i18n="cust_color">Choose Color:</span></h4>
+                        <div class="color-pills" id="modal-color-pills">
+                            <!-- Injected dynamically via JS -->
+                        </div>
+                        <h4 class="customizer-title"><i class="ri-settings-4-line"></i> <span data-i18n="cust_acc">Add Accessories:</span></h4>
+                        <div class="accessories-list">
+                            <label class="accessory-checkbox-wrapper">
+                                <div class="accessory-info">
+                                    <input type="checkbox" class="acc-checkbox" data-price="350" data-name-en="Premium Helmet" data-name-fr="Casque Premium" data-name-ar="خوذة ممتازة">
+                                    <span data-i18n="acc_helmet">Premium Helmet</span>
+                                </div>
+                                <span class="accessory-price">+350 DH</span>
+                            </label>
+                            <label class="accessory-checkbox-wrapper">
+                                <div class="accessory-info">
+                                    <input type="checkbox" class="acc-checkbox" data-price="180" data-name-en="Anti-Theft Steel Lock" data-name-fr="Antivol en Acier" data-name-ar="قفل مضاد للسرقة">
+                                    <span data-i18n="acc_lock">Heavy-Duty Lock</span>
+                                </div>
+                                <span class="accessory-price">+180 DH</span>
+                            </label>
+                            <label class="accessory-checkbox-wrapper">
+                                <div class="accessory-info">
+                                    <input type="checkbox" class="acc-checkbox" data-price="90" data-name-en="Phone Mount" data-name-fr="Support Téléphone" data-name-ar="حامل هاتف">
+                                    <span data-i18n="acc_mount">Phone Mount</span>
+                                </div>
+                                <span class="accessory-price">+90 DH</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions-row" style="margin-top: 1.5rem;">
                         <div class="quantity-selector">
                             <button class="qty-btn" id="qty-minus">-</button>
                             <input type="number" id="qty-input" value="1" min="1" readonly>
@@ -291,7 +352,7 @@
                         <button class="btn btn-dark" id="modal-add-cart" data-i18n="modal_add_cart">Ajouter au panier</button>
                     </div>
                     
-                    <button class="btn btn-primary btn-block buy-now-btn" id="modal-buy-now" data-i18n="modal_order_now">Commander Maintenant</button>
+                    <button class="btn btn-primary btn-block" id="modal-buy-now" data-i18n="modal_order_now">Commander Maintenant</button>
 
                     <div class="live-viewers glass">
                         <div class="live-dot-container">
@@ -374,6 +435,55 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Range & Savings Calculator Section (Feature 2) -->
+    <section id="calculator" class="calc-section">
+        <div class="container">
+            <h2 class="section-title text-white" data-i18n="calc_title">Range & Fuel Savings Calculator</h2>
+            <p class="section-subtitle" style="color: #ccc;" data-i18n="calc_subtitle">Calculateur d'autonomie et d'économie de carburant par rapport au moteur thermique.</p>
+            <div class="calc-grid reveal-up">
+                <div class="calc-card glass">
+                    <div class="form-group">
+                        <label for="commute-slider" style="display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 0.8rem;">
+                            <span data-i18n="calc_commute_dist">Daily Commute Distance:</span>
+                            <strong id="commute-val">30 km</strong>
+                        </label>
+                        <input type="range" class="custom-range-slider" id="commute-slider" min="5" max="80" step="5" value="30">
+                    </div>
+                    <div class="calc-recommendation" id="calc-rec-box">
+                        <div class="toast-icon"><i class="ri-lightbulb-line"></i></div>
+                        <div>
+                            <p style="font-size: 0.85rem; color: #ccc;" data-i18n="calc_rec_title">Recommended Model:</p>
+                            <h4 id="calc-rec-model" class="text-white" style="font-size: 1.15rem; font-weight: 800; margin-top: 0.2rem;">Tank M41 1000W</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="calc-outputs">
+                    <div class="calc-stat">
+                        <div>
+                            <h4 class="text-white" style="font-size: 0.95rem;" data-i18n="calc_gas_cost">Daily Gas Cost:</h4>
+                            <p style="font-size: 0.8rem; color: #aaa;" data-i18n="calc_gas_desc">Assuming average fuel consumption</p>
+                        </div>
+                        <span class="calc-stat-val" id="calc-gas-val" style="color: #ff6b6b;">24.00 DH</span>
+                    </div>
+                    <div class="calc-stat">
+                        <div>
+                            <h4 class="text-white" style="font-size: 0.95rem;" data-i18n="calc_elec_cost">Daily Charging Cost:</h4>
+                            <p style="font-size: 0.8rem; color: #aaa;" data-i18n="calc_elec_desc">Based on Lydec electricity rates</p>
+                        </div>
+                        <span class="calc-stat-val" id="calc-elec-val" style="color: #2ed573;">1.20 DH</span>
+                    </div>
+                    <div class="calc-stat">
+                        <div>
+                            <h4 class="text-white" style="font-size: 0.95rem;" data-i18n="calc_annual_saving">Estimated Annual Savings:</h4>
+                            <p style="font-size: 0.8rem; color: #aaa;" data-i18n="calc_savings_desc">Based on 300 riding days per year</p>
+                        </div>
+                        <span class="calc-stat-val" id="calc-savings-val" style="font-size: 2.2rem;">6,840.00 DH</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -579,6 +689,34 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Review Drawer Toggle & Form (Feature 8) -->
+            <button class="btn btn-outline btn-pill review-drawer-toggle reveal-up" id="toggle-review-form" data-i18n="rev_write_btn" style="margin: 2.5rem auto 0 auto; display: block;">Write a Review</button>
+            <div class="review-form-container glass" id="review-form-wrapper" style="max-width: 600px; margin: 1.5rem auto 0 auto;">
+                <h3 style="margin-bottom: 1.2rem; font-weight: bold; text-align: center;" data-i18n="rev_form_title">Share Your Experience</h3>
+                <form class="contact-form" id="customer-review-form">
+                    <div class="form-group" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem;">
+                        <span style="font-size: 0.9rem; color: #ccc; margin-bottom: 0.5rem;" data-i18n="rev_select_rating">Select Rating:</span>
+                        <div class="star-rating-select" id="star-rating-selector">
+                            <i class="ri-star-fill" data-value="1"></i>
+                            <i class="ri-star-fill" data-value="2"></i>
+                            <i class="ri-star-fill" data-value="3"></i>
+                            <i class="ri-star-fill" data-value="4"></i>
+                            <i class="ri-star-fill" data-value="5"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="rev-name" placeholder="Your Name" data-i18n-placeholder="form_name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="rev-city" placeholder="Your City" data-i18n-placeholder="rev_city_placeholder" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="rev-text" placeholder="Your Review" data-i18n-placeholder="rev_text_placeholder" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" data-i18n="rev_submit_btn">Submit Review</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -658,6 +796,11 @@
     <section id="faq" class="faq section-dark">
         <div class="container">
             <h2 class="section-title text-white" data-i18n="sec_faq">Frequently Asked Questions</h2>
+            
+            <!-- FAQ Search Bar (Feature 6) -->
+            <div class="faq-search-wrapper reveal-up">
+                <input type="text" class="faq-search-input" id="faq-search-input" placeholder="Search FAQ..." data-i18n-placeholder="faq_search_placeholder">
+            </div>
             <div class="faq-container reveal-up">
                 <div class="faq-item">
                     <div class="faq-question">
@@ -864,6 +1007,36 @@
         <i class="ri-whatsapp-line"></i>
         <span class="whatsapp-tooltip">Besoin d'aide ? Contactez-nous!</span>
     </a>
+
+    <!-- Premium Checkout Invoice Drawer Modal (Feature 5) -->
+    <div class="invoice-modal" id="checkout-invoice-modal">
+        <div class="invoice-card glass">
+            <div class="invoice-header">
+                <i class="ri-bill-line"></i>
+                <h3 style="font-weight: 800; font-size: 1.5rem; margin-top: 0.8rem;" data-i18n="inv_title">Review Your Order</h3>
+                <p style="font-size: 0.85rem; color: #aaa;" data-i18n="inv_subtitle">Verifiez vos détails avant de commander sur WhatsApp</p>
+            </div>
+            <div class="invoice-body" id="invoice-details-list">
+                <!-- Injected via JS -->
+            </div>
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <button class="btn btn-outline" style="flex: 1;" id="close-invoice-btn" data-i18n="btn_cancel">Cancel</button>
+                <button class="btn btn-primary" style="flex: 1.5;" id="confirm-invoice-checkout">
+                    <i class="ri-whatsapp-line"></i> <span data-i18n="btn_checkout_wa">Send Order</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Proof Toast (Feature 3) -->
+    <div class="purchase-toast" id="purchase-social-toast">
+        <div class="toast-icon">
+            <i class="ri-shopping-bag-3-line"></i>
+        </div>
+        <div class="toast-body" id="purchase-social-text">
+            <!-- Injected via JS -->
+        </div>
+    </div>
 
     <script src="translations.js"></script>
     <script src="script.js"></script>

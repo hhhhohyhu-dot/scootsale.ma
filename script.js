@@ -225,9 +225,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalMainImg = document.getElementById('modal-main-img');
     const modalThumbnails = document.getElementById('modal-thumbnails');
     
+    let activeScooterId = 1;
+    let selectedColor = "";
+    const colorMap = {
+        "Bleu": "#00a8ff", "Jaune": "#ffb800", "Noir": "#121212", 
+        "Orange": "#ff7f11", "Vert": "#2ed573", "Rouge": "#ff3838", "Blanc": "#ffffff"
+    };
+
     viewButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
             const id = e.target.getAttribute('data-id');
+            activeScooterId = id;
             const data = scooters[id];
             
             // Populate Modal Data
@@ -245,28 +253,136 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('modal-suspensions').textContent = data.suspensions;
             document.getElementById('modal-equipements').textContent = data.equipements;
             
-            // Populate Images
+            // 1. Populate Color Pills (Feature 1)
+            const colorPillsContainer = document.getElementById('modal-color-pills');
+            if (colorPillsContainer) {
+                colorPillsContainer.innerHTML = '';
+                const colors = data.couleur.split(', ');
+                selectedColor = colors[0];
+                colors.forEach((color, idx) => {
+                    const pill = document.createElement('div');
+                    pill.className = `color-pill ${idx === 0 ? 'active' : ''}`;
+                    pill.style.backgroundColor = colorMap[color] || '#ccc';
+                    pill.setAttribute('title', color);
+                    pill.addEventListener('click', () => {
+                        colorPillsContainer.querySelectorAll('.color-pill').forEach(p => p.classList.remove('active'));
+                        pill.classList.add('active');
+                        selectedColor = color;
+                    });
+                    colorPillsContainer.appendChild(pill);
+                });
+            }
+
+            // Reset accessories (Feature 1)
+            const accCheckboxes = document.querySelectorAll('.acc-checkbox');
+            accCheckboxes.forEach(cb => cb.checked = false);
+
+            function updateModalPrice() {
+                let accTotal = 0;
+                accCheckboxes.forEach(cb => {
+                    if (cb.checked) {
+                        accTotal += parseFloat(cb.getAttribute('data-price'));
+                    }
+                });
+                const qty = parseInt(document.getElementById('qty-input').value) || 1;
+                const currentBasePrice = parseFloat(data.price.replace(/,/g, '').replace(' DH', '').replace(' MAD', ''));
+                const totalPrice = (currentBasePrice + accTotal) * qty;
+                document.getElementById('modal-price').textContent = totalPrice.toLocaleString('en-US', { minimumFractionDigits: 2 }) + ' DH';
+            }
+
+            // Remove old listeners to avoid multiple binding, and bind fresh
+            accCheckboxes.forEach(cb => {
+                cb.onchange = updateModalPrice;
+            });
+
+            // Populate Images & Indicators (Feature 4)
             modalMainImg.src = data.images[0];
             modalThumbnails.innerHTML = ''; // clear previous
             
+            // Add dots indicators wrapper
+            let dotsWrapper = document.getElementById('modal-carousel-dots');
+            if (!dotsWrapper) {
+                dotsWrapper = document.createElement('div');
+                dotsWrapper.id = 'modal-carousel-dots';
+                dotsWrapper.className = 'carousel-indicators';
+                modalThumbnails.parentNode.insertBefore(dotsWrapper, modalThumbnails.nextSibling);
+            }
+            dotsWrapper.innerHTML = '';
+
+            let currentImgIdx = 0;
+            
+            function changeModalImage(idx) {
+                currentImgIdx = idx;
+                const imgSrc = data.images[idx];
+                modalMainImg.style.animation = 'none';
+                modalMainImg.offsetHeight; // trigger reflow
+                modalMainImg.style.animation = 'fadeIn 0.5s ease';
+                modalMainImg.src = imgSrc;
+                
+                // Update active thumbnail
+                const thumbs = modalThumbnails.querySelectorAll('img');
+                thumbs.forEach((t, i) => {
+                    if (i === idx) t.classList.add('active');
+                    else t.classList.remove('active');
+                });
+
+                // Update active dot
+                const dots = dotsWrapper.querySelectorAll('.carousel-dot');
+                dots.forEach((d, i) => {
+                    if (i === idx) d.classList.add('active');
+                    else d.classList.remove('active');
+                });
+            }
+
             data.images.forEach((imgSrc, index) => {
+                // Thumbnail
                 const img = document.createElement('img');
                 img.src = imgSrc;
                 img.classList.add('thumb-img');
                 if(index === 0) img.classList.add('active');
-                
-                img.addEventListener('click', () => {
-                    document.querySelectorAll('.thumb-img').forEach(t => t.classList.remove('active'));
-                    img.classList.add('active');
-                    
-                    modalMainImg.style.animation = 'none';
-                    modalMainImg.offsetHeight; // trigger reflow
-                    modalMainImg.style.animation = 'fadeIn 0.5s ease';
-                    modalMainImg.src = imgSrc;
-                });
-                
+                img.addEventListener('click', () => changeModalImage(index));
                 modalThumbnails.appendChild(img);
+
+                // Indicator dot
+                const dot = document.createElement('div');
+                dot.className = `carousel-dot ${index === 0 ? 'active' : ''}`;
+                dot.addEventListener('click', () => changeModalImage(index));
+                dotsWrapper.appendChild(dot);
             });
+
+            // Touch Swipe / Drag Events for Main Image (Feature 4)
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            modalMainImg.ontouchstart = (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            };
+            modalMainImg.ontouchend = (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            };
+            modalMainImg.onmousedown = (e) => {
+                touchStartX = e.screenX;
+            };
+            modalMainImg.onmouseup = (e) => {
+                touchEndX = e.screenX;
+                handleSwipe();
+            };
+
+            function handleSwipe() {
+                const diff = touchEndX - touchStartX;
+                if (Math.abs(diff) > 50) { // minimum threshold
+                    if (diff > 0) { // swiped right
+                        let prevIdx = currentImgIdx - 1;
+                        if (prevIdx < 0) prevIdx = data.images.length - 1;
+                        changeModalImage(prevIdx);
+                    } else { // swiped left
+                        let nextIdx = currentImgIdx + 1;
+                        if (nextIdx >= data.images.length) nextIdx = 0;
+                        changeModalImage(nextIdx);
+                    }
+                }
+            }
             
             // Set data-id to modal buy now button
             document.getElementById('modal-buy-now').setAttribute('data-id', id);
@@ -277,6 +393,20 @@ document.addEventListener('DOMContentLoaded', () => {
             // Set a random live viewer count between 20 and 150
             document.getElementById('live-count').textContent = Math.floor(Math.random() * 130) + 20;
 
+            // Bind quantity controls to update price
+            document.getElementById('qty-minus').onclick = () => {
+                let val = parseInt(document.getElementById('qty-input').value);
+                if (val > 1) {
+                    document.getElementById('qty-input').value = val - 1;
+                    updateModalPrice();
+                }
+            };
+            document.getElementById('qty-plus').onclick = () => {
+                let val = parseInt(document.getElementById('qty-input').value);
+                document.getElementById('qty-input').value = val + 1;
+                updateModalPrice();
+            };
+            
             // Show modal
             modal.classList.add('show');
             document.body.style.overflow = 'hidden'; // prevent scrolling
@@ -505,26 +635,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Checkout
+    // Checkout (Integrated with Feature 5 Invoice modal)
     cartCheckoutBtn.addEventListener('click', () => {
         if(cart.length === 0) return;
         
-        const isAr = currentLang === 'ar';
-        let message = isAr ? "مرحباً! أود طلب ما يلي:\n\n" : "Bonjour! Je voudrais passer la commande suivante:\n\n";
-        let total = 0;
+        // Map cart items format to openInvoice format
+        const invoiceItems = cart.map(item => ({
+            name: item.name,
+            qty: item.qty,
+            price: item.price,
+            color: null,
+            accessories: []
+        }));
         
-        cart.forEach(item => {
-            const itemTotal = item.price * item.qty;
-            total += itemTotal;
-            message += `- ${item.qty}x ${item.name} (${item.price.toLocaleString('en-US')} DH) = ${itemTotal.toLocaleString('en-US')} DH\n`;
-        });
+        openInvoice(invoiceItems);
         
-        const totalText = isAr ? "المجموع" : "TOTAL";
-        const availText = isAr ? "هل هذا متوفر؟" : "Est-ce disponible ?";
-        
-        message += `\n*${totalText}: ${total.toLocaleString('en-US', {minimumFractionDigits: 2})} DH*\n\n${availText}`;
-        
-        window.open(`https://wa.me/212679409398?text=${encodeURIComponent(message)}`, '_blank');
+        // Close cart drawer
+        cartDrawer.classList.remove('active');
+        cartOverlay.classList.remove('active');
     });
 
     // --- Animated Counters ---
@@ -614,4 +742,494 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     startCountdown();
+
+
+    /* ==========================================================================
+       NEW PREMIUM FEATURES LOGIC
+       ========================================================================== */
+
+    // 1. Scroll Progress Bar (Feature 10)
+    window.addEventListener('scroll', () => {
+        const scrollProgress = document.getElementById('scroll-progress');
+        if (scrollProgress) {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollProgress.style.width = scrollPercent + '%';
+        }
+    });
+
+    // 2. Magnetic Buttons Effect (Feature 10)
+    const magneticButtons = document.querySelectorAll('.btn-primary, .btn-whatsapp, .whatsapp-float');
+    magneticButtons.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const position = btn.getBoundingClientRect();
+            const x = e.clientX - position.left - position.width / 2;
+            const y = e.clientY - position.top - position.height / 2;
+            btn.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = 'translate(0px, 0px)';
+        });
+    });
+
+    // 3. Range & Fuel Savings Calculator (Feature 2)
+    const commuteSlider = document.getElementById('commute-slider');
+    const commuteVal = document.getElementById('commute-val');
+    const calcGasVal = document.getElementById('calc-gas-val');
+    const calcElecVal = document.getElementById('calc-elec-val');
+    const calcSavingsVal = document.getElementById('calc-savings-val');
+    const calcRecModel = document.getElementById('calc-rec-model');
+
+    function calculateSavings() {
+        if (!commuteSlider) return;
+        const distance = parseInt(commuteSlider.value);
+        commuteVal.textContent = distance + ' km';
+
+        // Calculations
+        // Average Moroccan fuel price ~ 14.50 MAD/L, average consumption 7L/100km
+        const dailyGasCost = distance * 2 * (7 / 100) * 14.50; 
+        // Electricity cost: Lydec tariff ~ 1.20 MAD/kWh, average consumption 1.5 kWh per 100km
+        const dailyElecCost = distance * 2 * (1.5 / 100) * 1.20;
+        const dailySavings = dailyGasCost - dailyElecCost;
+        const annualSavings = dailySavings * 300; // 300 riding days/year
+
+        calcGasVal.textContent = dailyGasCost.toFixed(2) + ' DH';
+        calcElecVal.textContent = dailyElecCost.toFixed(2) + ' DH';
+        calcSavingsVal.textContent = annualSavings.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' DH';
+
+        // Recommend model
+        let recommended = "Tank M41 1000W";
+        if (distance >= 50) {
+            recommended = "Tank Double Motor";
+        } else if (distance >= 30) {
+            recommended = "Tank Ultimate 2000W";
+        } else if (distance >= 15) {
+            recommended = "Tank M41 Armored";
+        }
+        calcRecModel.textContent = recommended;
+    }
+
+    if (commuteSlider) {
+        commuteSlider.addEventListener('input', calculateSavings);
+        calculateSavings(); // Initial run
+    }
+
+    // 4. Product Filtering & Sorting (Feature 7)
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const priceFilterSlider = document.getElementById('price-filter-slider');
+    const priceSliderValue = document.getElementById('price-slider-value');
+    const productSortSelect = document.getElementById('product-sort-select');
+    const productGrid = document.getElementById('product-cards-container');
+
+    let activeCategory = 'all';
+    let maxPriceLimit = 10000;
+
+    function applyFiltersAndSort() {
+        if (!productGrid) return;
+        const cards = Array.from(productGrid.querySelectorAll('.product-card'));
+        
+        cards.forEach(card => {
+            const price = parseFloat(card.getAttribute('data-price'));
+            const category = card.getAttribute('data-category');
+
+            const categoryMatch = activeCategory === 'all' || category === activeCategory;
+            const priceMatch = price <= maxPriceLimit;
+
+            if (categoryMatch && priceMatch) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Sort cards
+        const sortVal = productSortSelect ? productSortSelect.value : 'default';
+        if (sortVal !== 'default') {
+            cards.sort((a, b) => {
+                const priceA = parseFloat(a.getAttribute('data-price'));
+                const priceB = parseFloat(b.getAttribute('data-price'));
+                const speedA = parseFloat(a.getAttribute('data-speed'));
+                const speedB = parseFloat(b.getAttribute('data-speed'));
+
+                if (sortVal === 'price-asc') return priceA - priceB;
+                if (sortVal === 'price-desc') return priceB - priceA;
+                if (sortVal === 'speed-desc') return speedB - speedA;
+                return 0;
+            });
+
+            cards.forEach(card => productGrid.appendChild(card));
+        }
+    }
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeCategory = btn.getAttribute('data-filter');
+            applyFiltersAndSort();
+        });
+    });
+
+    if (priceFilterSlider) {
+        priceFilterSlider.addEventListener('input', () => {
+            maxPriceLimit = parseInt(priceFilterSlider.value);
+            priceSliderValue.textContent = maxPriceLimit.toLocaleString() + ' DH';
+            applyFiltersAndSort();
+        });
+    }
+
+    if (productSortSelect) {
+        productSortSelect.addEventListener('change', applyFiltersAndSort);
+    }
+
+    // 5. FAQ Search Bar (Feature 6)
+    const faqSearchInput = document.getElementById('faq-search-input');
+    if (faqSearchInput) {
+        faqSearchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
+                if (question.includes(query) || answer.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    }
+
+    // 6. Interactive Model Comparison Table column hover (Feature 9)
+    const compareTable = document.querySelector('.compare-table');
+    if (compareTable) {
+        const cells = compareTable.querySelectorAll('th, td');
+        cells.forEach(cell => {
+            cell.addEventListener('mouseenter', () => {
+                const colIndex = cell.cellIndex;
+                if (colIndex > 0) { // Don't highlight the labels column
+                    const rows = compareTable.querySelectorAll('tr');
+                    rows.forEach(row => {
+                        const c = row.cells[colIndex];
+                        if (c) c.classList.add('highlighted-col');
+                    });
+                }
+            });
+            cell.addEventListener('mouseleave', () => {
+                const colIndex = cell.cellIndex;
+                if (colIndex > 0) {
+                    const rows = compareTable.querySelectorAll('tr');
+                    rows.forEach(row => {
+                        const c = row.cells[colIndex];
+                        if (c) c.classList.remove('highlighted-col');
+                    });
+                }
+            });
+        });
+    }
+
+    // 7. Interactive Review Submission Drawer (Feature 8)
+    const toggleReviewBtn = document.getElementById('toggle-review-form');
+    const reviewFormWrapper = document.getElementById('review-form-wrapper');
+    const starSelector = document.getElementById('star-rating-selector');
+    const reviewForm = document.getElementById('customer-review-form');
+    const testimonialGrid = document.querySelector('.testimonial-grid');
+
+    let selectedRating = 5;
+
+    if (toggleReviewBtn) {
+        toggleReviewBtn.addEventListener('click', () => {
+            reviewFormWrapper.classList.toggle('open');
+            const isEn = document.documentElement.lang !== 'ar' && document.documentElement.lang !== 'fr';
+            const isFr = document.documentElement.lang === 'fr';
+            toggleReviewBtn.textContent = reviewFormWrapper.classList.contains('open') 
+                ? (isEn ? "Hide Form" : (isFr ? "Masquer le formulaire" : "إخفاء الاستمارة")) 
+                : (isEn ? "Write a Review" : (isFr ? "Écrire un Avis" : "كتابة تقييم"));
+        });
+    }
+
+    if (starSelector) {
+        const stars = starSelector.querySelectorAll('i');
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = parseInt(star.getAttribute('data-value'));
+                stars.forEach(s => {
+                    const val = parseInt(s.getAttribute('data-value'));
+                    if (val <= selectedRating) {
+                        s.classList.add('active');
+                        s.style.color = '#ffb800';
+                    } else {
+                        s.classList.remove('active');
+                        s.style.color = 'rgba(255, 255, 255, 0.2)';
+                    }
+                });
+            });
+        });
+        // Initial active stars
+        stars.forEach(s => s.classList.add('active'));
+    }
+
+    function addReviewCard(review, animate = false) {
+        if (!testimonialGrid) return;
+        
+        const card = document.createElement('div');
+        card.className = `testimonial-card glass reveal-up active ${animate ? 'new-review-animate' : ''}`;
+        
+        let starsHtml = '';
+        for (let i = 0; i < 5; i++) {
+            starsHtml += i < review.rating ? '<i class="ri-star-fill"></i>' : '<i class="ri-star-line"></i>';
+        }
+
+        card.innerHTML = `
+            <div class="stars">${starsHtml}</div>
+            <p class="review-text">"${review.text}"</p>
+            <div class="customer">
+                <div class="avatar">${review.name.charAt(0).toUpperCase()}</div>
+                <div>
+                    <h4>${review.name}</h4>
+                    <span>${review.city}</span>
+                </div>
+            </div>
+        `;
+        
+        if (animate) {
+            testimonialGrid.prepend(card);
+            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+            testimonialGrid.appendChild(card);
+        }
+    }
+
+    // Load review from local storage
+    let localReviews = JSON.parse(localStorage.getItem('_mohamed_z__-user-reviews') || '[]');
+    localReviews.forEach(r => addReviewCard(r));
+
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('rev-name').value;
+            const city = document.getElementById('rev-city').value;
+            const text = document.getElementById('rev-text').value;
+
+            const newReview = { rating: selectedRating, name, city, text };
+            localReviews.push(newReview);
+            localStorage.setItem('_mohamed_z__-user-reviews', JSON.stringify(localReviews));
+
+            addReviewCard(newReview, true);
+            
+            // Reset form
+            reviewForm.reset();
+            reviewFormWrapper.classList.remove('open');
+            if (toggleReviewBtn) {
+                const isEn = document.documentElement.lang !== 'ar' && document.documentElement.lang !== 'fr';
+                const isFr = document.documentElement.lang === 'fr';
+                toggleReviewBtn.textContent = isEn ? "Write a Review" : (isFr ? "Écrire un Avis" : "كتابة تقييم");
+            }
+        });
+    }
+
+    // 8. Social Proof Toast (Feature 3)
+    const names = ["Yassine", "Rachid", "Othmane", "Chaimae", "Nisrine", "Amine", "Mehdi", "Meriem", "Ghita", "Hamza", "Khalid", "Salma"];
+    const citiesList = ["Casablanca", "Rabat", "Marrakech", "Fès", "Tanger", "Agadir", "Meknès", "Oujda", "Kénitra", "Tétouan", "Settat"];
+    const modelsList = ["Tank M41 1000W", "Tank M41 Armored", "Tank Ultimate 2000W", "Tank Double Motor"];
+
+    const toastEl = document.getElementById('purchase-social-toast');
+    const toastText = document.getElementById('purchase-social-text');
+
+    function showRandomToast() {
+        if (!toastEl || !toastText) return;
+        const randomName = names[Math.floor(Math.random() * names.length)];
+        const randomCity = citiesList[Math.floor(Math.random() * citiesList.length)];
+        const randomModel = modelsList[Math.floor(Math.random() * modelsList.length)];
+        const randomTime = Math.floor(Math.random() * 50) + 5;
+
+        const isAr = document.documentElement.lang === 'ar';
+        const isFr = document.documentElement.lang === 'fr';
+
+        let textText = ``;
+        if (isAr) {
+            textText = `قام <strong>${randomName}</strong> من مدينة <strong>${randomCity}</strong> بشراء <strong>${randomModel}</strong> ⚡ منذ ${randomTime} دقائق.`;
+            toastEl.style.left = 'auto';
+            toastEl.style.right = '24px';
+        } else if (isFr) {
+            textText = `<strong>${randomName}</strong> de <strong>${randomCity}</strong> a acheté <strong>${randomModel}</strong> ⚡ il y a ${randomTime} min.`;
+            toastEl.style.left = '24px';
+            toastEl.style.right = 'auto';
+        } else {
+            textText = `<strong>${randomName}</strong> from <strong>${randomCity}</strong> purchased <strong>${randomModel}</strong> ⚡ ${randomTime} mins ago.`;
+            toastEl.style.left = '24px';
+            toastEl.style.right = 'auto';
+        }
+
+        toastText.innerHTML = textText;
+        toastEl.classList.add('show');
+
+        setTimeout(() => {
+            toastEl.classList.remove('show');
+        }, 6000);
+    }
+
+    // Show first toast after 8 seconds, then repeat every 35 seconds
+    setTimeout(() => {
+        showRandomToast();
+        setInterval(showRandomToast, 35000);
+    }, 8000);
+
+    // 9. Premium Checkout Invoice Modal & WhatsApp (Feature 5)
+    const invoiceModal = document.getElementById('checkout-invoice-modal');
+    const invoiceDetailsList = document.getElementById('invoice-details-list');
+    const confirmInvoiceBtn = document.getElementById('confirm-invoice-checkout');
+    const closeInvoiceBtn = document.getElementById('close-invoice-btn');
+    
+    let currentInvoiceMessage = "";
+
+    function openInvoice(items) {
+        if (!invoiceModal || !invoiceDetailsList) return;
+        invoiceDetailsList.innerHTML = '';
+        
+        let subtotal = 0;
+        let invoiceText = "";
+        
+        const isAr = document.documentElement.lang === 'ar';
+        const isFr = document.documentElement.lang === 'fr';
+        
+        // Header in message
+        invoiceText += isAr ? "*طلب جديد من _mohamed_z__* 🚀\n\n" : "*Nouvelle Commande _mohamed_z__* 🚀\n\n";
+
+        items.forEach(item => {
+            const itemBasePrice = item.price * item.qty;
+            subtotal += itemBasePrice;
+            
+            // Build item display in Modal
+            const itemRow = document.createElement('div');
+            itemRow.className = 'invoice-row';
+            itemRow.innerHTML = `
+                <div>
+                    <strong>${item.name}</strong> x${item.qty}
+                    ${item.color ? `<br><small style="color: #aaa;">Couleur: ${item.color}</small>` : ''}
+                </div>
+                <strong>${itemBasePrice.toLocaleString('en-US', {minimumFractionDigits: 2})} DH</strong>
+            `;
+            invoiceDetailsList.appendChild(itemRow);
+            
+            // Build item text for WhatsApp
+            invoiceText += `• *${item.name}* x${item.qty}`;
+            if (item.color) {
+                invoiceText += ` (Couleur: ${item.color})`;
+            }
+            invoiceText += `\n  S/Total: ${itemBasePrice.toLocaleString('en-US', {minimumFractionDigits: 2})} DH\n`;
+
+            if (item.accessories && item.accessories.length > 0) {
+                item.accessories.forEach(acc => {
+                    const accCost = acc.price * item.qty;
+                    subtotal += accCost;
+                    
+                    const accRow = document.createElement('div');
+                    accRow.className = 'invoice-row';
+                    accRow.style.paddingLeft = '1.5rem';
+                    accRow.style.fontSize = '0.85rem';
+                    accRow.style.color = '#aaa';
+                    accRow.innerHTML = `
+                        <span>+ ${acc.name}</span>
+                        <span>${accCost.toLocaleString('en-US', {minimumFractionDigits: 2})} DH</span>
+                    `;
+                    invoiceDetailsList.appendChild(accRow);
+                    
+                    invoiceText += `  + _${acc.name}_ (+${accCost.toLocaleString('en-US', {minimumFractionDigits: 2})} DH)\n`;
+                });
+            }
+        });
+        
+        // Shipping Row (Free delivery)
+        const shippingRow = document.createElement('div');
+        shippingRow.className = 'invoice-row';
+        shippingRow.style.color = '#2ed573';
+        shippingRow.innerHTML = `
+            <span>${isAr ? "التوصيل" : "Livraison"}</span>
+            <strong>${isAr ? "مجاني" : "GRATUITE"}</strong>
+        `;
+        invoiceDetailsList.appendChild(shippingRow);
+        invoiceText += isAr ? `• *التوصيل*: مجاني 🚚\n` : `• *Livraison*: GRATUITE 🚚\n`;
+
+        // Total Row
+        const totalRow = document.createElement('div');
+        totalRow.className = 'invoice-row total-row';
+        totalRow.innerHTML = `
+            <span><strong>Total:</strong></span>
+            <strong>${subtotal.toLocaleString('en-US', {minimumFractionDigits: 2})} DH</strong>
+        `;
+        invoiceDetailsList.appendChild(totalRow);
+        invoiceText += `\n*TOTAL: ${subtotal.toLocaleString('en-US', {minimumFractionDigits: 2})} DH*`;
+        
+        currentInvoiceMessage = encodeURIComponent(invoiceText);
+        invoiceModal.classList.add('show');
+    }
+
+    if (closeInvoiceBtn) {
+        closeInvoiceBtn.addEventListener('click', () => {
+            invoiceModal.classList.remove('show');
+        });
+    }
+
+    if (confirmInvoiceBtn) {
+        confirmInvoiceBtn.addEventListener('click', () => {
+            window.open(`https://wa.me/212679409398?text=${currentInvoiceMessage}`, '_blank');
+            invoiceModal.classList.remove('show');
+        });
+    }
+
+    // Connect modal Buy Now button (Feature 1 Customizer details + Feature 5 Invoice)
+    const modalBuyNowBtn = document.getElementById('modal-buy-now');
+    if (modalBuyNowBtn) {
+        modalBuyNowBtn.addEventListener('click', () => {
+            const qty = parseInt(document.getElementById('qty-input').value) || 1;
+            const data = scooters[activeScooterId];
+            const accs = [];
+            const accCheckboxes = document.querySelectorAll('.acc-checkbox');
+            accCheckboxes.forEach(cb => {
+                if (cb.checked) {
+                    const isAr = document.documentElement.lang === 'ar';
+                    const isFr = document.documentElement.lang === 'fr';
+                    const name = isAr ? cb.getAttribute('data-name-ar') : (isFr ? cb.getAttribute('data-name-fr') : cb.getAttribute('data-name-en'));
+                    accs.push({
+                        name: name,
+                        price: parseFloat(cb.getAttribute('data-price'))
+                    });
+                }
+            });
+            const scooterPrice = parseFloat(data.price.replace(/,/g, '').replace(' DH', '').replace(' MAD', ''));
+
+            openInvoice([{
+                name: data.name,
+                qty: qty,
+                price: scooterPrice,
+                color: selectedColor,
+                accessories: accs
+            }]);
+            
+            // Close details modal
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    // Hijack card buy now buttons to open invoice
+    const cardsBuyNow = document.querySelectorAll('.buy-now-btn');
+    cardsBuyNow.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const id = e.target.getAttribute('data-id');
+            if (id && scooters[id]) {
+                const data = scooters[id];
+                const scooterPrice = parseFloat(data.price.replace(/,/g, '').replace(' DH', '').replace(' MAD', ''));
+                openInvoice([{
+                    name: data.name,
+                    qty: 1,
+                    price: scooterPrice,
+                    color: null,
+                    accessories: []
+                }]);
+            }
+        });
+    });
 });
