@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeIcon = themeBtn.querySelector('i');
     
     // Check saved theme (Default to dark)
-    let currentTheme = localStorage.getItem('scootsale-theme') || 'dark';
+    let currentTheme = localStorage.getItem('_mohamed_z__-theme') || 'dark';
     
     if (currentTheme === 'light') {
         document.body.classList.add('light-mode');
@@ -143,11 +143,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.body.classList.contains('light-mode')) {
             document.body.classList.remove('light-mode');
             themeIcon.className = 'ri-moon-line';
-            localStorage.setItem('scootsale-theme', 'dark');
+            localStorage.setItem('_mohamed_z__-theme', 'dark');
         } else {
             document.body.classList.add('light-mode');
             themeIcon.className = 'ri-sun-line';
-            localStorage.setItem('scootsale-theme', 'light');
+            localStorage.setItem('_mohamed_z__-theme', 'light');
         }
     });
     
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentLangText = document.getElementById('current-lang');
     
     // Check saved language (Default to Arabic)
-    let currentLang = localStorage.getItem('scootsale-lang') || 'ar';
+    let currentLang = localStorage.getItem('_mohamed_z__-lang') || 'ar';
     
     function applyTranslations(lang) {
         if (typeof translations === 'undefined' || !translations[lang]) return;
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Save
-        localStorage.setItem('scootsale-lang', lang);
+        localStorage.setItem('_mohamed_z__-lang', lang);
     }
     
     // Initial apply
@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 const message = encodeURIComponent(`Bonjour! Je voudrais acheter ${data.name}${qtyText} au prix de ${data.price}. Est-il disponible ?`);
-                window.open(`https://wa.me/212607436420?text=${message}`, '_blank');
+                window.open(`https://wa.me/212679409398?text=${message}`, '_blank');
             }
         });
     });
@@ -524,7 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         message += `\n*${totalText}: ${total.toLocaleString('en-US', {minimumFractionDigits: 2})} DH*\n\n${availText}`;
         
-        window.open(`https://wa.me/212607436420?text=${encodeURIComponent(message)}`, '_blank');
+        window.open(`https://wa.me/212679409398?text=${encodeURIComponent(message)}`, '_blank');
     });
 
     // --- Animated Counters ---
@@ -571,13 +571,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Countdown Timer ---
     function startCountdown() {
         // Set countdown to 3 days from now (resets each visit to always show urgency)
-        let endDate = localStorage.getItem('scootsale-countdown-end');
+        let endDate = localStorage.getItem('_mohamed_z__-countdown-end');
         const now = new Date().getTime();
         
         if (!endDate || parseInt(endDate) < now) {
             // Set new countdown: 3 days from now
             endDate = now + (3 * 24 * 60 * 60 * 1000);
-            localStorage.setItem('scootsale-countdown-end', endDate);
+            localStorage.setItem('_mohamed_z__-countdown-end', endDate);
         } else {
             endDate = parseInt(endDate);
         }
@@ -589,7 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (diff <= 0) {
                 // Reset countdown
                 const newEnd = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
-                localStorage.setItem('scootsale-countdown-end', newEnd);
+                localStorage.setItem('_mohamed_z__-countdown-end', newEnd);
                 return;
             }
 

@@ -75,13 +75,13 @@ const translations = {
         "form_msg": "Votre Message",
         "form_submit": "Envoyer le Message",
 
-        "footer_desc": "Product/service<br>⚡ La Référence des Trottinettes Électriques<br>💰 Vente • Achat • Dépôt-Vente<br>🔎 Nous Trouvons le Modèle Qu'il Vous Faut<br>📲 WhatsApp ☎️: 0607436420<br>📍 Settat",
+        "footer_desc": "Product/service<br>⚡ La Référence des Trottinettes Électriques<br>💰 Vente • Achat • Dépôt-Vente<br>🔎 Nous Trouvons le Modèle Qu'il Vous Faut<br>📲 WhatsApp ☎️: 0679409398<br>📍 Settat",
         "footer_links_title": "Liens Rapides",
         "footer_cat_title": "Catégories",
         "footer_news_title": "Newsletter",
         "footer_news_desc": "Abonnez-vous pour recevoir nos mises à jour et offres exclusives.",
         "footer_news_btn": "S'abonner",
-        "footer_rights": "© 2026 ScootSale.ma. Tous droits réservés.",
+        "footer_rights": "© 2026 _mohamed_z__. Tous droits réservés.",
 
         "cart_title": "Votre Panier",
         "cart_empty": "Votre panier est vide.",
@@ -128,7 +128,7 @@ const translations = {
         "cities_subtitle": "Nous livrons dans plus de 40 villes à travers tout le Royaume",
         "cities_more": "Et toutes les autres villes...",
 
-        "sec_social": "Rejoignez la Communauté ScootSale 🚀",
+        "sec_social": "Rejoignez la Communauté _mohamed_z__ 🚀",
         "social_desc": "Suivez-nous pour des offres exclusives, des vidéos et des témoignages clients",
 
         "faq1_q": "Quels sont vos options et délais de livraison ?",
@@ -218,13 +218,13 @@ const translations = {
         "form_msg": "رسالتك",
         "form_submit": "إرسال الرسالة",
 
-        "footer_desc": "المنتج/الخدمة<br>⚡ مرجع السكوترات الكهربائية<br>💰 بيع • شراء • بيع بالوكالة<br>🔎 نجد لك الموديل الذي يناسبك<br>📲 واتساب ☎️: 0607436420<br>📍 سطات",
+        "footer_desc": "المنتج/الخدمة<br>⚡ مرجع السكوترات الكهربائية<br>💰 بيع • شراء • بيع بالوكالة<br>🔎 نجد لك الموديل الذي يناسبك<br>📲 واتساب ☎️: 0679409398<br>📍 سطات",
         "footer_links_title": "روابط سريعة",
         "footer_cat_title": "التصنيفات",
         "footer_news_title": "القائمة البريدية",
         "footer_news_desc": "اشترك لتصلك آخر التحديثات والعروض الحصرية.",
         "footer_news_btn": "اشترك",
-        "footer_rights": "© 2026 ScootSale.ma. جميع الحقوق محفوظة.",
+        "footer_rights": "© 2026 _mohamed_z__. جميع الحقوق محفوظة.",
 
         "cart_title": "سلة المشتريات",
         "cart_empty": "سلتك فارغة.",
@@ -271,7 +271,7 @@ const translations = {
         "cities_subtitle": "نوصل لأكثر من 40 مدينة في جميع أنحاء المملكة",
         "cities_more": "وجميع المدن الأخرى...",
 
-        "sec_social": "انضم إلى مجتمع ScootSale 🚀",
+        "sec_social": "انضم إلى مجتمع _mohamed_z__ 🚀",
         "social_desc": "تابعنا للحصول على عروض حصرية وفيديوهات وآراء العملاء",
 
         "faq1_q": "ما هي خيارات ومواعيد التوصيل؟",
