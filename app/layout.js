@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import { CartProvider } from "@/context/CartContext";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { ThemeProvider } from "@/context/ThemeContext";
 import { AuthProvider } from "@/context/AuthContext";
 import CartDrawer from "@/components/CartDrawer/CartDrawer";
 import Footer from "@/components/Footer/Footer";
@@ -20,14 +21,16 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <body className={`${outfit.variable} ${inter.variable}`} suppressHydrationWarning>
         <LanguageProvider>
-          <AuthProvider>
-            <CartProvider>
-              <Navbar />
-              {children}
-              <CartDrawer />
-              <Footer />
-            </CartProvider>
-          </AuthProvider>
+          <ThemeProvider>
+            <AuthProvider>
+              <CartProvider>
+                <Navbar />
+                {children}
+                <CartDrawer />
+                <Footer />
+              </CartProvider>
+            </AuthProvider>
+          </ThemeProvider>
         </LanguageProvider>
       </body>
     </html>

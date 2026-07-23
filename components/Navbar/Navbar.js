@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ShoppingCart, Menu, Globe, User, X, Mail, Lock, Eye, EyeOff, LogOut, Package, Phone, CheckCircle, AlertCircle } from "lucide-react";
+import { ShoppingCart, Menu, Globe, User, X, Mail, Lock, Eye, EyeOff, LogOut, Package, Phone, CheckCircle, AlertCircle, Sun, Moon } from "lucide-react";
 import styles from "./Navbar.module.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCart } from "@/context/CartContext";
 import { useLanguage } from "@/context/LanguageContext";
+import { useTheme } from "@/context/ThemeContext";
 import { useAuth } from "@/context/AuthContext";
 
 // ─── Tiny notification helper ─────────────────────────────────────────────────
@@ -71,6 +72,7 @@ export default function Navbar() {
   const langRef = useRef(null);
   const { cartCount, setIsCartOpen } = useCart();
   const { locale, changeLanguage, t } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const { user, login, logout, register, getMyOrders } = useAuth();
 
   // Scroll detection
@@ -166,6 +168,16 @@ export default function Navbar() {
           </nav>
 
           <div className={styles.navActions}>
+            {/* Dark/Light Mode Toggle */}
+            <button 
+              className={styles.iconBtn} 
+              onClick={toggleTheme} 
+              aria-label="Toggle Theme"
+              title={theme === "dark" ? "Light Mode" : "Dark Mode"}
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+
             {/* Language Switcher */}
             <div className={styles.langWrapper} ref={langRef}>
               <button className={styles.iconBtn} aria-label="Language" onClick={() => setIsLangOpen(o => !o)}>

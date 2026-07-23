@@ -681,3 +681,31 @@
   }
 }
 
+/* ─── Light Mode Navbar Overrides ─── */
+:global(html[data-theme="light"]) .scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+:global(html[data-theme="light"]) .iconBtn {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+:global(html[data-theme="light"]) .iconBtn:hover {
+  background: rgba(0, 0, 0, 0.1);
+  color: var(--color-accent);
+}
+
+:global(html[data-theme="light"]) .langDropdown {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.01);
+}
+
+:global(html[data-theme="light"]) .langDropdown button:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+:global(html[data-theme="light"]) .submitBtn {
+  color: #fff;
+}
+
