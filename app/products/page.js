@@ -207,10 +207,48 @@ export default function ProductsPage() {
   return (
     <main>
       <header className={styles.pageHeader}>
-        <div className="container">
+        {/* ── Animated speed lines ── */}
+        <div className={styles.speedLines}>
+          {[...Array(14)].map((_, i) => (
+            <span key={i} className={styles.speedLine} style={{ '--i': i }} />
+          ))}
+        </div>
+
+        {/* ── Particle sparks ── */}
+        <div className={styles.particles}>
+          {[...Array(18)].map((_, i) => (
+            <span key={i} className={styles.particle} style={{ '--i': i }} />
+          ))}
+        </div>
+
+        {/* ── Glowing ground trail ── */}
+        <div className={styles.groundTrail} />
+
+        {/* ── Scooter image riding across ── */}
+        <div className={styles.scooterWrap}>
+          <div className={styles.motionBlur} />
+          <img
+            src="/images/products/kaabo_wolf_king_gtr.png"
+            alt="Premium Scooter"
+            className={styles.ridingScooter}
+          />
+          <div className={styles.wheelGlow} />
+        </div>
+
+        {/* ── Text content ── */}
+        <div className={`container ${styles.headerContent}`}>
+          <motion.div
+            className={styles.headerBadge}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            ⚡ 10 Premium Models
+          </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
             className={styles.title}
           >
             All <span>Scooters</span>
@@ -218,13 +256,14 @@ export default function ProductsPage() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: 0.5 }}
             className={styles.description}
           >
             Browse our full collection of premium electric scooters.
           </motion.p>
         </div>
       </header>
+
 
       <section className={styles.content}>
         <div className={`container ${styles.layout}`}>
