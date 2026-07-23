@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Play, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import styles from "./Hero.module.css";
 import Link from "next/link";
 
@@ -9,6 +10,58 @@ import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
   const { t } = useLanguage();
+  
+  // Parallax state
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  // Stats count-up state
+  const [clientsCount, setClientsCount] = useState(0);
+  const [soldCount, setSoldCount] = useState(0);
+  const [citiesCount, setCitiesCount] = useState(0);
+
+  useEffect(() => {
+    // Parallax mouse event handler
+    const handleMouseMove = (e) => {
+      const { clientWidth, clientHeight } = document.documentElement;
+      const x = (e.clientX / clientWidth) - 0.5;
+      const y = (e.clientY / clientHeight) - 0.5;
+      setMousePosition({ x, y });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    // Count up animation
+    const clientsEnd = 10;
+    const soldEnd = 15;
+    const citiesEnd = 5;
+    const duration = 2000; // 2 seconds
+    
+    const startTime = performance.now();
+    let frameId;
+    
+    const updateCount = (timestamp) => {
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // easeOutQuad curve
+      const easeProgress = progress * (2 - progress);
+      
+      setClientsCount(Math.floor(easeProgress * clientsEnd));
+      setSoldCount(Math.floor(easeProgress * soldEnd));
+      setCitiesCount(Math.floor(easeProgress * citiesEnd));
+      
+      if (progress < 1) {
+        frameId = requestAnimationFrame(updateCount);
+      }
+    };
+    
+    frameId = requestAnimationFrame(updateCount);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(frameId);
+    };
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -19,17 +72,37 @@ export default function Hero() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 1, 
+        ease: [0.215, 0.61, 0.355, 1] 
+      } 
+    }
   };
 
   return (
     <section className={styles.hero}>
-      {/* Strict enforcement: ONLY ELECTRIC SCOOTERS allowed. Using INMOTION RS exact model local image. */}
-      <img 
+      {/* Cinematic Reveal + Mouse Parallax of the premium electric scooter */}
+      <motion.img 
         src="/images/products/inmotion_rs.png" 
         alt="Premium Electric Scooter Performance" 
         className={styles.videoBg} 
+        initial={{ scale: 1.15, opacity: 0 }}
+        animate={{ 
+          scale: 1.08, 
+          opacity: 1,
+          x: mousePosition.x * -15,
+          y: mousePosition.y * -15
+        }}
+        transition={{ 
+          scale: { duration: 1.8, ease: "easeOut" },
+          opacity: { duration: 1.2, ease: "easeOut" },
+          x: { type: "tween", ease: "easeOut", duration: 0.5 },
+          y: { type: "tween", ease: "easeOut", duration: 0.5 }
+        }}
       />
       <div className={styles.overlay}></div>
       
@@ -59,15 +132,15 @@ export default function Hero() {
 
           <motion.div className={styles.stats} variants={itemVariants}>
             <div className={styles.statItem}>
-              <div className={styles.statNumber}>10<span>k+</span></div>
+              <div className={styles.statNumber}>{clientsCount}<span>k+</span></div>
               <div className={styles.statLabel}>{t("stat_clients") || "Customers"}</div>
             </div>
             <div className={styles.statItem}>
-              <div className={styles.statNumber}>15<span>k+</span></div>
+              <div className={styles.statNumber}>{soldCount}<span>k+</span></div>
               <div className={styles.statLabel}>{t("stat_sold") || "Scooters Sold"}</div>
             </div>
             <div className={styles.statItem}>
-              <div className={styles.statNumber}>5<span>+</span></div>
+              <div className={styles.statNumber}>{citiesCount}<span>+</span></div>
               <div className={styles.statLabel}>Morocco 🇲🇦</div>
             </div>
           </motion.div>
