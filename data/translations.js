@@ -61,7 +61,17 @@ export const translations = {
     faq5_a: "Yes, we have a dedicated technical support team and repair centers. We also supply spare parts for all the models we sell.",
     stat_clients: "Satisfied Clients",
     stat_sold: "Scooters Sold",
-    footer_links_title: "Quick Links"
+    footer_links_title: "Quick Links",
+    
+    rev1_name: "Youssef M.",
+    rev1_city: "Casablanca",
+    rev1_text: "An exceptional scooter! The motor is really powerful, the suspensions absorb shocks well and the range matches what was advertised.",
+    rev2_name: "Sara B.",
+    rev2_city: "Rabat",
+    rev2_text: "Excellent value for money. The scooter is robust and stable even at high speed. 24h delivery in Rabat, top service!",
+    rev3_name: "Amine T.",
+    rev3_city: "Marrakech",
+    rev3_text: "I ordered the Tank Double Motor and honestly I'm amazed. The speed is crazy and the hydraulic brakes are very reassuring. Thanks _mohamed_z__!"
   },
   fr: {
     nav_scooters: "Scooters",
@@ -125,7 +135,17 @@ export const translations = {
     faq5_a: "Oui, nous avons une équipe de support technique dédiée et des centres de réparation. Nous fournissons également des pièces de rechange pour tous les modèles que nous vendons.",
     stat_clients: "Clients Satisfaits",
     stat_sold: "Scooters Vendus",
-    footer_links_title: "Liens Rapides"
+    footer_links_title: "Liens Rapides",
+    
+    rev1_name: "Youssef M.",
+    rev1_city: "Casablanca",
+    rev1_text: "Une trottinette exceptionnelle ! Le moteur est vraiment puissant, les suspensions absorbent bien les chocs et l'autonomie est conforme à ce qui est annoncé.",
+    rev2_name: "Sara B.",
+    rev2_city: "Rabat",
+    rev2_text: "Excellent rapport qualité-prix. La trottinette est robuste et stable même à haute vitesse. Livraison en 24h sur Rabat, service au top!",
+    rev3_name: "Amine T.",
+    rev3_city: "Marrakech",
+    rev3_text: "J'ai commandé la Tank Double Motor et franchement je suis bluffé. La vitesse est dingue et les freins hydrauliques sont très rassurants. Merci _mohamed_z__!",
   },
   ar: {
     nav_scooters: "سكوترات",
@@ -189,6 +209,16 @@ export const translations = {
     faq5_a: "نعم، لدينا فريق دعم تقني مخصص ومراكز إصلاح. كما نوفر قطع الغيار لجميع الموديلات التي نبيعها.",
     stat_clients: "عملاء راضون",
     stat_sold: "سكوتر مباع",
-    footer_links_title: "روابط سريعة"
+    footer_links_title: "روابط سريعة",
+    
+    rev1_name: "يوسف م.",
+    rev1_city: "الدار البيضاء",
+    rev1_text: "سكوتر استثنائي! المحرك قوي للغاية، ونظام التعليق يمتص الصدمات بشكل جيد، والمسافة المقطوعة مطابقة لما تم الإعلان عنه.",
+    rev2_name: "سارة ب.",
+    rev2_city: "الرباط",
+    rev2_text: "قيمة ممتازة مقابل السعر. السكوتر متين ومستقر حتى عند السرعات العالية. توصيل خلال 24 ساعة في الرباط، خدمة ممتازة!",
+    rev3_name: "أمين ت.",
+    rev3_city: "مراكش",
+    rev3_text: "لقد طلبت سكوتر Tank بمحرك مزدوج وبصراحة أنا منبهر. السرعة جنونية والفرامل الهيدروليكية مطمئنة للغاية. شكراً _mohamed_z__!"
   }
 };

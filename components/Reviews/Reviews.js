@@ -10,23 +10,23 @@ export default function Reviews() {
 
   const reviewsList = [
     {
-      name: "Youssef M.",
-      city: "Casablanca",
-      text: "Une trottinette exceptionnelle ! Le moteur est vraiment puissant, les suspensions absorbent bien les chocs et l'autonomie est conforme à ce qui est annoncé.",
+      nameKey: "rev1_name",
+      cityKey: "rev1_city",
+      textKey: "rev1_text",
       rating: 5,
       avatar: "Y"
     },
     {
-      name: "Sara B.",
-      city: "Rabat",
-      text: "Excellent rapport qualité-prix. La trottinette est robuste et stable même à haute vitesse. Livraison en 24h sur Rabat, service au top!",
+      nameKey: "rev2_name",
+      cityKey: "rev2_city",
+      textKey: "rev2_text",
       rating: 5,
       avatar: "S"
     },
     {
-      name: "Amine T.",
-      city: "Marrakech",
-      text: "J'ai commandé la Tank Double Motor et franchement je suis bluffé. La vitesse est dingue et les freins hydrauliques sont très rassurants. Merci _mohamed_z__!",
+      nameKey: "rev3_name",
+      cityKey: "rev3_city",
+      textKey: "rev3_text",
       rating: 5,
       avatar: "A"
     }
@@ -84,12 +84,12 @@ export default function Reviews() {
                   <Star key={i} size={16} fill="#e2f954" color="#e2f954" />
                 ))}
               </div>
-              <p className={styles.text}>"{review.text}"</p>
+              <p className={styles.text}>"{t(review.textKey)}"</p>
               <div className={styles.customer}>
                 <div className={styles.avatar}>{review.avatar}</div>
                 <div>
-                  <h4 className={styles.name}>{review.name}</h4>
-                  <span className={styles.city}>{review.city}</span>
+                  <h4 className={styles.name}>{t(review.nameKey)}</h4>
+                  <span className={styles.city}>{t(review.cityKey)}</span>
                 </div>
               </div>
             </motion.div>
