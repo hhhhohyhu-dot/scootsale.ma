@@ -1,0 +1,63 @@
+.trustSection {
+  padding: var(--spacing-2xl) 0;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.badgesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-xl);
+  align-items: flex-start;
+  justify-items: center;
+}
+
+.badgeItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-sm);
+  cursor: default;
+}
+
+.iconWrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  margin-bottom: var(--spacing-sm);
+  transition: var(--transition-normal);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.badgeItem:hover .iconWrapper {
+  background: rgba(226, 249, 84, 0.1);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
+}
+
+.badgeTitle {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 768px) {
+  .badgesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .badgesGrid {
+    grid-template-columns: 1fr;
+  }
+}

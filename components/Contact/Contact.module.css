@@ -1,0 +1,208 @@
+.section {
+  padding: 80px 0;
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.subtitle {
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  backdrop-filter: blur(8px);
+  transition: var(--transition-normal);
+}
+
+.card:hover {
+  transform: translateX(5px);
+  border-color: rgba(226, 249, 84, 0.2);
+}
+
+.icon {
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.waIcon {
+  color: #25d366;
+}
+
+.igIcon {
+  color: #e1306c;
+}
+
+.phoneIcon {
+  color: var(--color-accent);
+}
+
+.cardContent h3 {
+  font-family: var(--font-primary);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.cardContent p {
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.cardContent span {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.link {
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition-fast);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.formContainer {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  backdrop-filter: blur(8px);
+}
+
+.formContainer h3 {
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.inputGroup input,
+.inputGroup textarea {
+  width: 100%;
+  padding: 0.9rem var(--spacing-md);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: var(--font-secondary);
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+}
+
+.inputGroup input:focus,
+.inputGroup textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.submitBtn {
+  padding: 1rem;
+  background: var(--color-accent);
+  border: none;
+  border-radius: var(--radius-full);
+  color: #000;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.submitBtn:hover {
+  background: var(--color-text-primary);
+  transform: translateY(-2px);
+}
+
+.mapContainer {
+  margin-top: 50px;
+  height: 250px;
+  background: #111;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapCard {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  z-index: 5;
+}
+
+.mapIcon {
+  color: var(--color-accent);
+}
+
+.mapCard strong {
+  display: block;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+
+.mapCard p {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+}

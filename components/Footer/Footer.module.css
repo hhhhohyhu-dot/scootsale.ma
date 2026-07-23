@@ -1,0 +1,135 @@
+.footer {
+  background: #0d0d0d;
+  border-top: 1px solid var(--color-border);
+  padding: 80px 0 0 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.logo {
+  font-family: var(--font-primary);
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.logoAccent {
+  color: var(--color-accent);
+}
+
+.desc {
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.linksGroup h3,
+.socialGroup h3 {
+  font-family: var(--font-primary);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.links a {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+}
+
+.links a:hover {
+  color: var(--color-accent);
+  transform: translateX(3px);
+}
+
+.socials {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+}
+
+.socialLink:hover {
+  color: var(--color-accent);
+}
+
+.warrantyBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--color-border);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.bottom {
+  border-top: 1px solid var(--color-border);
+  padding: 25px 0;
+  background: #090909;
+}
+
+.bottomContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.paymentBadges {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.dot {
+  color: var(--color-border);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+  .bottomContent {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+}

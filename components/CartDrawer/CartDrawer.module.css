@@ -1,0 +1,173 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drawer {
+  width: 100%;
+  max-width: 450px;
+  height: 100%;
+  background: var(--color-surface);
+  border-left: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+}
+
+.header {
+  padding: var(--spacing-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
+}
+
+.closeBtn {
+  color: var(--color-text-secondary);
+  transition: var(--transition-fast);
+}
+
+.closeBtn:hover {
+  color: var(--color-error);
+}
+
+.items {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.emptyState {
+  text-align: center;
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-4xl);
+}
+
+.cartItem {
+  display: flex;
+  gap: var(--spacing-md);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.itemImage {
+  width: 80px;
+  height: 80px;
+  background: #1a1a1a;
+  border-radius: var(--radius-sm);
+  object-fit: contain;
+  padding: 8px;
+}
+
+.itemDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.itemTitle {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+}
+
+.itemPrice {
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-bottom: auto;
+}
+
+.itemControls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.qtyControl {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-full);
+  padding: 4px 12px;
+}
+
+.qtyBtn {
+  color: var(--color-text-secondary);
+  font-size: 1.2rem;
+}
+
+.qtyBtn:hover {
+  color: var(--color-text-primary);
+}
+
+.removeBtn {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  text-decoration: underline;
+}
+
+.removeBtn:hover {
+  color: var(--color-error);
+}
+
+.footer {
+  padding: var(--spacing-xl);
+  border-top: 1px solid var(--color-border);
+  background: rgba(0,0,0,0.2);
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.2rem;
+}
+
+.totalLabel {
+  color: var(--color-text-secondary);
+}
+
+.totalAmount {
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  font-weight: 800;
+}
+
+.checkoutBtn {
+  width: 100%;
+  background-color: #25D366; /* WhatsApp Green */
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 1rem;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--transition-fast);
+}
+
+.checkoutBtn:hover {
+  background-color: #128C7E;
+  transform: translateY(-2px);
+}
