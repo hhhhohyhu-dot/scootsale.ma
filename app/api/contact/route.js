@@ -13,12 +13,12 @@ export async function POST(request) {
 
     const recipientEmail = "hhhhohyhu@gmail.com";
 
-    // Submit to FormSubmit endpoint with custom formatting
     const response = await fetch(`https://formsubmit.co/ajax/${recipientEmail}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json"
+        "Accept": "application/json",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
       },
       body: JSON.stringify({
         _subject: `ScootSale Contact Form: New Message from ${name}`,
@@ -43,7 +43,7 @@ export async function POST(request) {
   } catch (error) {
     console.error("Contact form processing error:", error);
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: "Failed to process form request." },
       { status: 500 }
     );
   }

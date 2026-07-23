@@ -42,25 +42,64 @@ export default function Contact() {
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/contact", {
+      // Direct submission from browser to FormSubmit for 100% reliability
+      const res = await fetch("https://formsubmit.co/ajax/hhhhohyhu@gmail.com", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          _subject: `ScootSale Contact: Message from ${formData.name}`,
+          _template: "table",
+          "Full Name": formData.name,
+          "Email Address": formData.email,
+          "Phone Number": formData.phone || "Not Provided",
+          "Message": formData.message
+        })
       });
 
       const data = await res.json();
 
-      if (res.ok && data.success) {
+      if (res.ok && (data.success === "true" || data.success === true)) {
+        setStatus("success");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        return;
+      }
+
+      // Fallback: Internal API route
+      const apiRes = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+      const apiData = await apiRes.json();
+      if (apiRes.ok && apiData.success) {
         setStatus("success");
         setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
         setStatus("error");
-        setErrorMsg(data.error || "Failed to send message.");
+        setErrorMsg(apiData.error || data.message || "Failed to send message.");
       }
     } catch (err) {
-      console.error("Form submit error:", err);
+      console.error("Direct submit error, attempting fallback route...", err);
+      try {
+        const apiRes = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+        const apiData = await apiRes.json();
+        if (apiRes.ok && apiData.success) {
+          setStatus("success");
+          setFormData({ name: "", email: "", phone: "", message: "" });
+          return;
+        }
+      } catch (fallbackErr) {
+        console.error("Fallback error:", fallbackErr);
+      }
       setStatus("error");
-      setErrorMsg("An unexpected error occurred. Please try again.");
+      setErrorMsg("Failed to send message. Please try again.");
     }
   };
 
