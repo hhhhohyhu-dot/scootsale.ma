@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import styles from "./Hero.module.css";
 import Link from "next/link";
@@ -19,6 +19,10 @@ export default function Hero() {
   const [soldCount, setSoldCount] = useState(0);
   const [citiesCount, setCitiesCount] = useState(0);
 
+  // Ref to detect when stats section is visible
+  const statsRef = useRef(null);
+  const isStatsInView = useInView(statsRef, { once: true, margin: "-50px" });
+
   useEffect(() => {
     // Parallax mouse event handler
     const handleMouseMove = (e) => {
@@ -30,7 +34,15 @@ export default function Hero() {
 
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Count up animation
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
+
+  // Trigger count-up only when stats section is in view
+  useEffect(() => {
+    if (!isStatsInView) return;
+
     const clientsEnd = 10;
     const soldEnd = 15;
     const citiesEnd = 5;
@@ -43,8 +55,8 @@ export default function Hero() {
       const elapsed = timestamp - startTime;
       const progress = Math.min(elapsed / duration, 1);
       
-      // easeOutQuad curve
-      const easeProgress = progress * (2 - progress);
+      // easeOutExpo curve (starts very fast, slows down smoothly at the end)
+      const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
       
       setClientsCount(Math.floor(easeProgress * clientsEnd));
       setSoldCount(Math.floor(easeProgress * soldEnd));
@@ -58,10 +70,9 @@ export default function Hero() {
     frameId = requestAnimationFrame(updateCount);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(frameId);
     };
-  }, []);
+  }, [isStatsInView]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -79,6 +90,27 @@ export default function Hero() {
       transition: { 
         duration: 1, 
         ease: [0.215, 0.61, 0.355, 1] 
+      } 
+    }
+  };
+
+  // Staggered variants for individual stat cards
+  const statsContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+    }
+  };
+
+  const statItemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.8, 
+        ease: [0.215, 0.61, 0.355, 1]
       } 
     }
   };
@@ -130,19 +162,27 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          <motion.div className={styles.stats} variants={itemVariants}>
-            <div className={styles.statItem}>
+          {/* Staggered entrance for statistics + scroll triggering */}
+          <motion.div 
+            className={styles.stats} 
+            variants={statsContainerVariants}
+            ref={statsRef}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <motion.div className={styles.statItem} variants={statItemVariants}>
               <div className={styles.statNumber}>{clientsCount}<span>k+</span></div>
               <div className={styles.statLabel}>{t("stat_clients") || "Customers"}</div>
-            </div>
-            <div className={styles.statItem}>
+            </motion.div>
+            <motion.div className={styles.statItem} variants={statItemVariants}>
               <div className={styles.statNumber}>{soldCount}<span>k+</span></div>
               <div className={styles.statLabel}>{t("stat_sold") || "Scooters Sold"}</div>
-            </div>
-            <div className={styles.statItem}>
+            </motion.div>
+            <motion.div className={styles.statItem} variants={statItemVariants}>
               <div className={styles.statNumber}>{citiesCount}<span>+</span></div>
               <div className={styles.statLabel}>Morocco 🇲🇦</div>
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
