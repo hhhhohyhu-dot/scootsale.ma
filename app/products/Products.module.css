@@ -60,7 +60,7 @@
 /* ── Riding Scooter ─────────────────────────────────────────────── */
 .scooterWrap {
   position: absolute;
-  right: -60px;
+  right: 20px;
   bottom: 0;
   width: 620px;
   height: 380px;
@@ -677,7 +677,7 @@
   /* Shrink scooter on tablet */
   .scooterWrap {
     width: 420px;
-    right: -80px;
+    right: 10px;
   }
 
   .ridingScooter {
