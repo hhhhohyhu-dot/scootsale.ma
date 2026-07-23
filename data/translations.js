@@ -47,7 +47,21 @@ export const translations = {
     login_btn: "Sign In",
     login_or: "or connect with",
     login_register: "Don't have an account? Sign Up",
-    close: "Close"
+    close: "Close",
+    
+    faq1_q: "What are your delivery options and times?",
+    faq1_a: "We offer fast delivery across all cities in Morocco. Orders are typically processed within 24 hours and delivered within 1-3 business days depending on your location.",
+    faq2_q: "Do your scooters come with a warranty?",
+    faq2_a: "Yes, all our electric scooters come with a 1-year official warranty that covers the motor, battery, and electronic components against manufacturing defects.",
+    faq3_q: "What payment methods do you accept?",
+    faq3_a: "We accept Cash on Delivery (COD), bank transfers, and secure online credit card payments. You can inspect your scooter before paying with COD.",
+    faq4_q: "How do I maintain the battery for a longer lifespan?",
+    faq4_a: "To maximize battery life, avoid fully draining it to 0%. Try to recharge when it drops to 20%. Store the scooter in a cool, dry place and charge it at least once a month if not in use.",
+    faq5_q: "Do you offer repair and maintenance services?",
+    faq5_a: "Yes, we have a dedicated technical support team and repair centers. We also supply spare parts for all the models we sell.",
+    stat_clients: "Satisfied Clients",
+    stat_sold: "Scooters Sold",
+    footer_links_title: "Quick Links"
   },
   fr: {
     nav_scooters: "Scooters",
@@ -97,7 +111,21 @@ export const translations = {
     login_btn: "Se Connecter",
     login_or: "ou se connecter avec",
     login_register: "Pas de compte ? S'inscrire",
-    close: "Fermer"
+    close: "Fermer",
+    
+    faq1_q: "Quels sont vos options et délais de livraison ?",
+    faq1_a: "Nous offrons une livraison rapide dans toutes les villes du Maroc. Les commandes sont généralement traitées dans les 24 heures et livrées en 1 à 3 jours ouvrables selon votre localisation.",
+    faq2_q: "Vos scooters sont-ils garantis ?",
+    faq2_a: "Oui, tous nos scooters électriques sont couverts par une garantie officielle d'un an qui couvre le moteur, la batterie et les composants électroniques contre les défauts de fabrication.",
+    faq3_q: "Quels modes de paiement acceptez-vous ?",
+    faq3_a: "Nous acceptons le paiement à la livraison (COD), les virements bancaires et les paiements sécurisés par carte de crédit en ligne. Vous pouvez inspecter votre scooter avant de payer avec le COD.",
+    faq4_q: "Comment entretenir la batterie pour qu'elle dure plus longtemps ?",
+    faq4_a: "Pour maximiser la durée de vie de la batterie, évitez de la vider complètement à 0%. Rechargez-la quand elle descend à 20%. Rangez le scooter dans un endroit frais et sec et chargez-le au moins une fois par mois si vous ne l'utilisez pas.",
+    faq5_q: "Offrez-vous des services de réparation et d'entretien ?",
+    faq5_a: "Oui, nous avons une équipe de support technique dédiée et des centres de réparation. Nous fournissons également des pièces de rechange pour tous les modèles que nous vendons.",
+    stat_clients: "Clients Satisfaits",
+    stat_sold: "Scooters Vendus",
+    footer_links_title: "Liens Rapides"
   },
   ar: {
     nav_scooters: "سكوترات",
@@ -147,6 +175,20 @@ export const translations = {
     login_btn: "تسجيل الدخول",
     login_or: "أو الدخول بواسطة",
     login_register: "ليس لديك حساب؟ سجل الآن",
-    close: "إغلاق"
+    close: "إغلاق",
+    
+    faq1_q: "ما هي خيارات ومواعيد التوصيل؟",
+    faq1_a: "نوفر توصيلًا سريعًا لجميع مدن المغرب. يتم معالجة الطلبات عادةً خلال 24 ساعة وتوصيلها في 1-3 أيام عمل حسب موقعك.",
+    faq2_q: "هل السكوترات تأتي بضمان؟",
+    faq2_a: "نعم، جميع سكوتراتنا الكهربائية تأتي بضمان رسمي لمدة سنة يغطي المحرك والبطارية والمكونات الإلكترونية ضد عيوب التصنيع.",
+    faq3_q: "ما هي طرق الدفع المقبولة؟",
+    faq3_a: "نقبل الدفع عند الاستلام (COD) والتحويلات البنكية والدفع الآمن بالبطاقة البنكية عبر الإنترنت. يمكنك فحص السكوتر قبل الدفع عند الاستلام.",
+    faq4_q: "كيف أحافظ على البطارية لتدوم أطول؟",
+    faq4_a: "لتعظيم عمر البطارية، تجنب تفريغها بالكامل إلى 0%. أعد شحنها عندما تنخفض إلى 20%. احفظ السكوتر في مكان بارد وجاف واشحنه مرة واحدة على الأقل شهريًا إذا لم تستخدمه.",
+    faq5_q: "هل تقدمون خدمات إصلاح وصيانة؟",
+    faq5_a: "نعم، لدينا فريق دعم تقني مخصص ومراكز إصلاح. كما نوفر قطع الغيار لجميع الموديلات التي نبيعها.",
+    stat_clients: "عملاء راضون",
+    stat_sold: "سكوتر مباع",
+    footer_links_title: "روابط سريعة"
   }
 };
