@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageSquare, Phone, Mail, MapPin } from "lucide-react";
 import styles from "./Contact.module.css";
@@ -26,12 +27,41 @@ const InstagramSVG = ({ size = 24, className }) => (
 
 export default function Contact() {
   const { t } = useLanguage();
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [status, setStatus] = useState("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleFormSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // Simulate contact form submission
-    alert("Message sent successfully!");
-    e.target.reset();
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        setStatus("error");
+        setErrorMsg(data.error || "Failed to send message.");
+      }
+    } catch (err) {
+      console.error("Form submit error:", err);
+      setStatus("error");
+      setErrorMsg("An unexpected error occurred. Please try again.");
+    }
   };
 
   return (
@@ -108,20 +138,62 @@ export default function Contact() {
             <h3>{t("contact_form_title")}</h3>
             <form className={styles.form} onSubmit={handleFormSubmit}>
               <div className={styles.inputGroup}>
-                <input type="text" placeholder={t("form_name")} required />
+                <input 
+                  type="text" 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder={t("form_name")} 
+                  required 
+                />
               </div>
               <div className={styles.inputGroup}>
-                <input type="email" placeholder={t("form_email")} required />
+                <input 
+                  type="email" 
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder={t("form_email")} 
+                  required 
+                />
               </div>
               <div className={styles.inputGroup}>
-                <input type="tel" placeholder={t("form_phone")} />
+                <input 
+                  type="tel" 
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder={t("form_phone")} 
+                />
               </div>
               <div className={styles.inputGroup}>
-                <textarea placeholder={t("form_msg")} rows="5" required></textarea>
+                <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder={t("form_msg")} 
+                  rows="5" 
+                  required
+                ></textarea>
               </div>
-              <button type="submit" className={styles.submitBtn}>
-                {t("form_submit")}
+              <button 
+                type="submit" 
+                className={styles.submitBtn}
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "..." : t("form_submit")}
               </button>
+
+              {status === "success" && (
+                <p style={{ color: "#10b981", marginTop: "12px", fontSize: "0.9rem", fontWeight: "600" }}>
+                  ✓ Message sent! We have received your inquiry.
+                </p>
+              )}
+              {status === "error" && (
+                <p style={{ color: "#ff4d4f", marginTop: "12px", fontSize: "0.9rem", fontWeight: "600" }}>
+                  ✕ {errorMsg}
+                </p>
+              )}
             </form>
           </motion.div>
         </div>
